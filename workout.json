@@ -1,0 +1,69 @@
+{
+  "programName": "Scheda Ipertrofia 4 Giorni",
+  "days": [
+    {
+      "id": "X",
+      "name": "GIORNO X (Petto, Dorso, Bicipiti, Tricipiti, Core)",
+      "exercises": [
+        { "name": "Chest Press", "sets": 4, "reps": "6-8", "rir": "2", "restSeconds": 150 },
+        { "name": "Panca Inclinata Manubri 30°", "sets": 3, "reps": "8-10", "rir": "1", "restSeconds": 120 },
+        { "name": "Lat Machine Presa Neutra", "sets": 4, "reps": "8-10", "rir": "1-2", "restSeconds": 120 },
+        { "name": "Low Row / Pulley", "sets": 3, "reps": "10-12", "rir": "1-2", "restSeconds": 90 },
+        { "name": "Alzate Laterali Manubri", "sets": 3, "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 90 },
+        { "name": "Curl Panca Inclinata 45°", "sets": 3, "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 90 },
+        { "name": "Curl ai Cavi (Pompaggio)", "sets": 2, "reps": "12-15", "rir": "0", "restSeconds": 60 },
+        { "name": "Pushdown ai Cavi", "sets": 3, "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 90 },
+        { "name": "[CORE] Cable Crunch ('La Mecca')", "sets": 3, "reps": "10-12", "rir": "1", "restSeconds": 60 },
+        { "name": "[CORE] Hanging Leg Raise", "sets": 3, "reps": "10-12", "rir": "1-2", "restSeconds": 60 }
+      ]
+    },
+    {
+      "id": "Y",
+      "name": "GIORNO Y (Gambe, Polpacci, Super Core)",
+      "exercises": [
+        { "name": "Leg Press 45°", "sets": 4, "reps": "6-8", "rir": "2", "restSeconds": 150 },
+        { "name": "Bulgarian Split Squat (o Hack Squat)", "sets": 3, "reps": "8-10/gamba", "rir": "1-2", "restSeconds": 90 },
+        { "name": "Leg Extension", "sets": 3, "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 90 },
+        { "name": "Leg Curl Seduto", "sets": 3, "reps": "10-12", "rir": "1", "restSeconds": 90 },
+        { "name": "Calf Raise", "sets": 4, "reps": "12-15", "rir": "0-1", "restSeconds": 60 },
+        { "name": "[SUPER CORE] Rotational Sit-ups", "sets": 3, "reps": "10-12/lato", "rir": "1", "restSeconds": 60 },
+        { "name": "[SUPER CORE] Side Plank Raises", "sets": 3, "reps": "10-12/lato", "rir": "1", "restSeconds": 60 },
+        { "name": "[SUPER CORE] Core Hold Series", "sets": 3, "reps": "45-60s", "rir": "Tenuta Isometrica", "restSeconds": 60 },
+        { "name": "[SUPER CORE] Y-Hyperextensions", "sets": 3, "reps": "12-15", "rir": "1-2", "restSeconds": 60 }
+      ]
+    },
+    {
+      "id": "Z",
+      "name": "GIORNO Z (Dorso, Spalle, Petto, Braccia, Core)",
+      "exercises": [
+        { "name": "Lat Machine / Trazioni", "sets": 3, "reps": "8-10", "rir": "1-2", "restSeconds": 120 },
+        { "name": "Rematore Manubrio / Low Row", "sets": 4, "reps": "8-10", "rir": "1-2", "restSeconds": 120 },
+        { "name": "Shoulder Press", "sets": 3, "reps": "8-10", "rir": "2", "restSeconds": 120 },
+        { "name": "Chest Press", "sets": 3, "reps": "8-10", "rir": "1", "restSeconds": 120 },
+        { "name": "Croci ai Cavi", "sets": 3, "reps": "12-15", "rir": "1", "restSeconds": 90 },
+        { "name": "Reverse Pec Deck", "sets": 3, "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 90 },
+        { "name": "Alzate Laterali Cavi", "sets": 3, "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 90 },
+        { "name": "Hammer Curl", "sets": 3, "reps": "10-12", "rir": "1", "restSeconds": 90 },
+        { "name": "Overhead Tricep Extension", "sets": 3, "reps": "10-12", "rir": "1", "restSeconds": 90 },
+        { "name": "[CORE] Crucifix Crunch", "sets": 3, "reps": "12-15", "rir": "1", "restSeconds": 60 },
+        { "name": "[CORE] Pallof Press ai Cavi", "sets": 3, "reps": "12/lato", "rir": "2", "restSeconds": 60 }
+      ]
+    },
+    {
+      "id": "A",
+      "name": "GIORNO A (Femorali, Cali Superseries, Polpacci, Super Core)",
+      "exercises": [
+        { "name": "Romanian Deadlift (RDL)", "sets": 4, "reps": "8-10", "rir": "2", "restSeconds": 150 },
+        { "name": "Leg Press (Piedi alti)", "sets": 3, "reps": "10-12", "rir": "1-2", "restSeconds": 120 },
+        { "name": "Leg Curl", "sets": 3, "reps": "10-12", "rir": "1", "restSeconds": 90 },
+        { "name": "[CALI SS 1] Chin-Up + Dip Parallele", "sets": 3, "reps": "6-8 (Traz) / 8-10 (Dip)", "rir": "1-2", "restSeconds": 90 },
+        { "name": "[CALI SS 2] Australian Pull-ups + Push-Ups", "sets": 3, "reps": "10-12 (Aust) / 12-15 (Push)", "rir": "1", "restSeconds": 60 },
+        { "name": "Calf Raise", "sets": 3, "reps": "12-15", "rir": "0-1", "restSeconds": 60 },
+        { "name": "[SUPER CORE] Crucifix Crunch", "sets": 3, "reps": "12-15", "rir": "1", "restSeconds": 60 },
+        { "name": "[SUPER CORE] Russian Twist (con carico)", "sets": 3, "reps": "12-15/lato", "rir": "1", "restSeconds": 60 },
+        { "name": "[SUPER CORE] Dragon Flag", "sets": 3, "reps": "6-8", "rir": "1", "restSeconds": 60 },
+        { "name": "[SUPER CORE] Plank", "sets": 3, "reps": "45-60s", "rir": "Tenuta Isometrica", "restSeconds": 60 }
+      ]
+    }
+  ]
+}
