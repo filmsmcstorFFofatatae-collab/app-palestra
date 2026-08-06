@@ -12,6 +12,7 @@
             --text-main: #ffffff;
             --text-muted: #aaaaaa;
             --danger: #ff4444;
+            --success: #4CAF50;
         }
         body {
             margin: 0;
@@ -24,17 +25,31 @@
         h1 { text-align: center; margin-bottom: 30px; }
         .hidden { display: none !important; }
         
-        /* Menu Giorni */
-        .day-card {
+        /* Menu Giorni & Lista Esercizi */
+        .day-card, .ex-list-card {
             background-color: var(--card-bg);
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 15px;
-            border-left: 5px solid var(--accent);
             cursor: pointer;
         }
+        .day-card { border-left: 5px solid var(--accent); }
         .day-card h2 { margin: 0 0 5px 0; font-size: 18px; }
         .day-card p { margin: 0; color: var(--text-muted); font-size: 14px; }
+
+        .ex-list-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid var(--danger);
+        }
+        .ex-list-card.completed {
+            border-left: 5px solid var(--success);
+            opacity: 0.6;
+        }
+        .ex-list-card h3 { margin: 0 0 5px 0; font-size: 16px; }
+        .ex-list-card p { margin: 0; color: var(--text-muted); font-size: 13px; }
+        .ex-status { font-weight: bold; color: var(--accent); }
 
         /* Workout Screen */
         .header {
@@ -48,19 +63,21 @@
             font-weight: bold;
             cursor: pointer;
             text-decoration: none;
+            padding: 5px 0;
         }
-        .progress { color: var(--text-muted); font-size: 14px; }
+        .progress { color: var(--text-muted); font-size: 14px; text-align: right; }
         
         .workout-card {
             background-color: var(--card-bg);
             padding: 25px;
             border-radius: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
-        .workout-card h2 { text-align: center; margin-top: 0; margin-bottom: 25px; font-size: 22px; }
+        .workout-card h2 { text-align: center; margin-top: 0; margin-bottom: 25px; font-size: 20px; }
         .info-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid #333;
             padding-bottom: 10px;
             margin-bottom: 15px;
@@ -68,9 +85,22 @@
         .info-row:last-child { border-bottom: none; margin-bottom: 0; }
         .info-label { color: var(--text-muted); }
         .info-value { color: var(--accent); font-weight: bold; font-size: 18px; }
+        
+        /* Input Pesi/Secondi */
+        .custom-input {
+            background: transparent;
+            border: 1px solid var(--text-muted);
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: bold;
+            text-align: right;
+            width: 80px;
+            padding: 8px;
+            border-radius: 8px;
+        }
 
-        /* Azioni */
-        .action-area { text-align: center; margin-top: 40px; }
+        /* Azioni & Timer */
+        .action-area { text-align: center; margin-top: 30px; }
         .btn-complete {
             background-color: var(--accent);
             color: var(--bg-color);
@@ -84,47 +114,80 @@
             max-width: 300px;
         }
         
-        /* Timer */
         .timer-text { font-size: 60px; font-weight: bold; color: var(--danger); margin: 0; }
         .timer-sub { color: var(--text-muted); margin-bottom: 20px; }
         .btn-skip {
-            background: none;
+            background: transparent;
             border: 1px solid var(--text-muted);
             color: var(--text-muted);
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 8px;
             cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-export {
+            display: block;
+            margin: 40px auto;
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Schermata Principale -->
+    <!-- Schermata Principale (Lista Schede) -->
     <div id="homeScreen">
         <h1>Le Mie Schede</h1>
         <div id="daysList"></div>
+        <button class="btn-export" onclick="exportData()">⬇ Esporta Dati Storico</button>
     </div>
 
-    <!-- Schermata Allenamento -->
+    <!-- Schermata Panoramica Giorno (Lista Esercizi) -->
+    <div id="overviewScreen" class="hidden">
+        <div class="header">
+            <span class="back-btn" onclick="goHome()">← Home</span>
+            <span class="progress" id="dayTitle"></span>
+        </div>
+        <div id="exerciseList"></div>
+    </div>
+
+    <!-- Schermata Allenamento (Singolo Esercizio) -->
     <div id="workoutScreen" class="hidden">
         <div class="header">
-            <span class="back-btn" onclick="goHome()">← Indietro</span>
+            <span class="back-btn" onclick="goToOverview()">← Indietro</span>
             <span class="progress" id="progressText"></span>
         </div>
 
         <div class="workout-card">
             <h2 id="exName"></h2>
+            
+            <!-- Zona Timer Attivo (es. per Plank) -->
+            <div id="activeTimerArea" class="hidden action-area" style="margin-top:0; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #333;">
+                <p class="timer-text" id="activeTimerDisplay" style="color: var(--accent); font-size: 45px;">0:00</p>
+                <button class="btn-skip" onclick="startActiveTimer()">Avvia Esecuzione</button>
+            </div>
+
             <div class="info-row">
                 <span class="info-label">Set Corrente:</span>
                 <span class="info-value" id="exSet"></span>
             </div>
             <div class="info-row">
-                <span class="info-label">Ripetizioni:</span>
-                <span class="info-value" id="exReps"></span>
+                <span class="info-label">Ripetizioni / RIR:</span>
+                <span class="info-value" id="exRepsRir"></span>
             </div>
+            
+            <!-- Input Pesi o Secondi -->
             <div class="info-row">
-                <span class="info-label">RIR Obiettivo:</span>
-                <span class="info-value" id="exRir"></span>
+                <span class="info-label" id="inputLabel">Carico (kg):</span>
+                <input type="number" id="exInput" class="custom-input" placeholder="0">
             </div>
         </div>
 
@@ -132,7 +195,7 @@
             <button id="completeBtn" class="btn-complete" onclick="completeSet()">COMPLETA SET</button>
             
             <div id="restArea" class="hidden">
-                <p class="timer-text" id="timerDisplay">0:00</p>
+                <p class="timer-text" id="restTimerDisplay">0:00</p>
                 <p class="timer-sub">di recupero</p>
                 <button class="btn-skip" onclick="skipRest()">Salta Recupero</button>
             </div>
@@ -144,25 +207,34 @@
         let selectedDay = null;
         let currentExIndex = 0;
         let currentSet = 1;
-        let timeLeft = 0;
-        let timerInterval = null;
+        
+        // Memoria sessione corrente: { "GiornoX": { 0: 2, 1: 0 } } -> Traccia i set completati oggi
+        let sessionProgress = {}; 
+        
+        // Memoria permanente (LocalStorage): Traccia i carichi e i secondi salvati nel tempo
+        let savedHistory = JSON.parse(localStorage.getItem('workoutHistory')) || {};
 
-        // Caricamento del file JSON
+        // Variabili per i timer basati sul tempo assoluto (Date.now())
+        let restInterval = null;
+        let activeInterval = null;
+
+        // --- INIZIALIZZAZIONE ---
         fetch('workout.json')
             .then(response => response.json())
             .then(data => {
                 workoutData = data;
                 renderHome();
             })
-            .catch(error => alert("Errore nel caricamento del file workout.json"));
+            .catch(error => alert("Errore nel caricamento di workout.json"));
 
+        // --- SCHERMATA HOME ---
         function renderHome() {
             const list = document.getElementById('daysList');
             list.innerHTML = '';
             workoutData.days.forEach(day => {
                 const card = document.createElement('div');
                 card.className = 'day-card';
-                card.onclick = () => startWorkout(day);
+                card.onclick = () => openDayOverview(day);
                 card.innerHTML = `
                     <h2>${day.name}</h2>
                     <p>${day.exercises.length} Esercizi</p>
@@ -171,28 +243,111 @@
             });
         }
 
-        function startWorkout(day) {
+        function goHome() {
+            document.getElementById('overviewScreen').classList.add('hidden');
+            document.getElementById('homeScreen').classList.remove('hidden');
+        }
+
+        // --- SCHERMATA PANORAMICA GIORNO ---
+        function openDayOverview(day) {
             selectedDay = day;
-            currentExIndex = 0;
-            currentSet = 1;
+            document.getElementById('dayTitle').innerText = day.name.split(' ')[0] + " " + day.name.split(' ')[1];
+            
+            // Inizializza i set completati per la sessione corrente, se non esiste
+            if (!sessionProgress[day.id]) {
+                sessionProgress[day.id] = {};
+                day.exercises.forEach((ex, i) => sessionProgress[day.id][i] = 0);
+            }
+
+            renderExerciseList();
             document.getElementById('homeScreen').classList.add('hidden');
+            document.getElementById('overviewScreen').classList.remove('hidden');
+        }
+
+        function renderExerciseList() {
+            const list = document.getElementById('exerciseList');
+            list.innerHTML = '';
+            
+            selectedDay.exercises.forEach((ex, i) => {
+                const setsDone = sessionProgress[selectedDay.id][i];
+                const isCompleted = setsDone >= ex.sets;
+                
+                const card = document.createElement('div');
+                card.className = `ex-list-card ${isCompleted ? 'completed' : ''}`;
+                card.onclick = () => startExercise(i);
+                
+                card.innerHTML = `
+                    <div>
+                        <h3>${ex.name}</h3>
+                        <p>${ex.reps} | RIR: ${ex.rir}</p>
+                    </div>
+                    <div class="ex-status">${setsDone} / ${ex.sets}</div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function goToOverview() {
+            // Ferma tutti i timer pendenti
+            clearInterval(restInterval);
+            clearInterval(activeInterval);
+            document.getElementById('workoutScreen').classList.add('hidden');
+            
+            // Aggiorna la lista e mostrala
+            renderExerciseList();
+            document.getElementById('overviewScreen').classList.remove('hidden');
+        }
+
+        // --- SCHERMATA WORKOUT (ESERCIZIO) ---
+        function startExercise(index) {
+            currentExIndex = index;
+            const ex = selectedDay.exercises[currentExIndex];
+            const setsDone = sessionProgress[selectedDay.id][currentExIndex];
+            
+            if (setsDone >= ex.sets) {
+                if (!confirm("Hai già completato i set per questo esercizio. Vuoi ricominciare da capo?")) return;
+                sessionProgress[selectedDay.id][currentExIndex] = 0; // Reset set
+            }
+            
+            // Calcola il set corrente basandosi su quanti ne hai fatti
+            currentSet = sessionProgress[selectedDay.id][currentExIndex] + 1;
+            
+            document.getElementById('overviewScreen').classList.add('hidden');
             document.getElementById('workoutScreen').classList.remove('hidden');
             updateWorkoutUI();
         }
 
-        function goHome() {
-            clearInterval(timerInterval);
-            document.getElementById('homeScreen').classList.remove('hidden');
-            document.getElementById('workoutScreen').classList.add('hidden');
+        function isTimedExercise(ex) {
+            const reps = ex.reps.toLowerCase();
+            const rir = ex.rir.toLowerCase();
+            return reps.includes('s') || rir.includes('isometrica');
         }
 
         function updateWorkoutUI() {
             const ex = selectedDay.exercises[currentExIndex];
-            document.getElementById('progressText').innerText = `Esercizio ${currentExIndex + 1} di ${selectedDay.exercises.length}`;
+            document.getElementById('progressText').innerText = `Es. ${currentExIndex + 1} di ${selectedDay.exercises.length}`;
             document.getElementById('exName').innerText = ex.name;
             document.getElementById('exSet').innerText = `${currentSet} / ${ex.sets}`;
-            document.getElementById('exReps').innerText = ex.reps;
-            document.getElementById('exRir').innerText = ex.rir;
+            document.getElementById('exRepsRir').innerText = `${ex.reps} | RIR: ${ex.rir}`;
+            
+            // Gestione Tipologia Esercizio (Pesi vs Tempo)
+            const inputField = document.getElementById('exInput');
+            if (isTimedExercise(ex)) {
+                document.getElementById('inputLabel').innerText = "Secondi Eseguiti:";
+                document.getElementById('activeTimerArea').classList.remove('hidden');
+                document.getElementById('activeTimerDisplay').innerText = "0:00";
+                clearInterval(activeInterval);
+            } else {
+                document.getElementById('inputLabel').innerText = "Carico (kg):";
+                document.getElementById('activeTimerArea').classList.add('hidden');
+            }
+
+            // Pre-compila l'input con lo storico salvato in precedenza
+            if (savedHistory[ex.name]) {
+                inputField.value = savedHistory[ex.name];
+            } else {
+                inputField.value = '';
+            }
             
             showRestArea(false);
         }
@@ -200,58 +355,115 @@
         function completeSet() {
             const ex = selectedDay.exercises[currentExIndex];
             
-            if (currentSet < ex.sets) {
-                currentSet++;
+            // Salva il peso o i secondi in modo permanente
+            const inputValue = document.getElementById('exInput').value;
+            if (inputValue !== '') {
+                savedHistory[ex.name] = inputValue;
+                localStorage.setItem('workoutHistory', JSON.stringify(savedHistory));
+            }
+            
+            // Incrementa i set completati
+            sessionProgress[selectedDay.id][currentExIndex]++;
+            currentSet = sessionProgress[selectedDay.id][currentExIndex] + 1;
+            
+            if (currentSet <= ex.sets) {
+                // Ci sono ancora set, avvia il recupero
                 startRest(ex.restSeconds);
             } else {
-                if (currentExIndex < selectedDay.exercises.length - 1) {
-                    currentExIndex++;
-                    currentSet = 1;
-                    startRest(ex.restSeconds);
-                } else {
-                    alert("Allenamento Completato! Ottimo lavoro.");
-                    goHome();
-                }
+                // Esercizio terminato, torna alla panoramica
+                alert(`Hai completato tutti i set di ${ex.name}!`);
+                goToOverview();
             }
         }
 
-        function startRest(seconds) {
-            timeLeft = seconds;
-            showRestArea(true);
-            updateTimerDisplay();
+        // --- GESTIONE TIMER ESECUZIONE ATTIVA (es. Plank) ---
+        function startActiveTimer() {
+            const inputVal = parseInt(document.getElementById('exInput').value);
+            if (!inputVal || inputVal <= 0) {
+                alert("Inserisci i secondi che vuoi eseguire nella casella in basso.");
+                return;
+            }
+
+            const endTime = Date.now() + (inputVal * 1000);
+            clearInterval(activeInterval);
             
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                updateTimerDisplay();
+            activeInterval = setInterval(() => {
+                let timeLeft = Math.ceil((endTime - Date.now()) / 1000);
                 if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    showRestArea(false);
-                    updateWorkoutUI(); // Aggiorna l'UI per il nuovo set
+                    clearInterval(activeInterval);
+                    document.getElementById('activeTimerDisplay').innerText = "FINE!";
+                    alert("Tempo di esecuzione scaduto!");
+                } else {
+                    const m = Math.floor(timeLeft / 60);
+                    const s = timeLeft % 60;
+                    document.getElementById('activeTimerDisplay').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
                 }
             }, 1000);
         }
 
-        function skipRest() {
-            clearInterval(timerInterval);
-            showRestArea(false);
-            updateWorkoutUI();
+        // --- GESTIONE TIMER RECUPERO (BACKGROUND PROOF) ---
+        function startRest(seconds) {
+            showRestArea(true);
+            const endTime = Date.now() + (seconds * 1000);
+            
+            // Aggiorna subito al primo avvio
+            updateRestDisplay(seconds);
+            
+            clearInterval(restInterval);
+            restInterval = setInterval(() => {
+                let timeLeft = Math.ceil((endTime - Date.now()) / 1000);
+                if (timeLeft <= 0) {
+                    clearInterval(restInterval);
+                    showRestArea(false);
+                    updateWorkoutUI(); // Prepara l'interfaccia per il set successivo
+                } else {
+                    updateRestDisplay(timeLeft);
+                }
+            }, 1000);
         }
 
-        function updateTimerDisplay() {
+        function updateRestDisplay(timeLeft) {
             const m = Math.floor(timeLeft / 60);
             const s = timeLeft % 60;
-            document.getElementById('timerDisplay').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+            document.getElementById('restTimerDisplay').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        function skipRest() {
+            clearInterval(restInterval);
+            showRestArea(false);
+            updateWorkoutUI();
         }
 
         function showRestArea(isResting) {
             if (isResting) {
                 document.getElementById('completeBtn').classList.add('hidden');
+                document.getElementById('activeTimerArea').classList.add('hidden');
                 document.getElementById('restArea').classList.remove('hidden');
             } else {
                 document.getElementById('completeBtn').classList.remove('hidden');
                 document.getElementById('restArea').classList.add('hidden');
+                // L'active timer lo rimette visible updateWorkoutUI() se necessario
             }
+        }
+
+        // --- ESPORTAZIONE DATI ---
+        function exportData() {
+            const dataStr = localStorage.getItem('workoutHistory');
+            if (!dataStr || dataStr === '{}') {
+                alert("Non hai ancora salvato nessun peso o tempo.");
+                return;
+            }
+            
+            const blob = new Blob([dataStr], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Palestra_Storico_${new Date().toISOString().slice(0,10)}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
     </script>
 </body>
