@@ -11,7 +11,7 @@
             --accent: #00ffcc;
             --text-main: #ffffff;
             --text-muted: #aaaaaa;
-            --danger: #ff4444;
+            --techno-gold: #FDB913; /* Giallo oro stile Technogym */
             --success: #4CAF50;
         }
         body {
@@ -41,15 +41,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-left: 5px solid var(--danger);
+            border-left: 5px solid var(--techno-gold); /* Aggiornato al Giallo */
         }
         .ex-list-card.completed {
             border-left: 5px solid var(--success);
             opacity: 0.6;
         }
+        
+        /* FIX: Prevents text from breaking onto multiple lines */
+        .ex-list-card > div:first-child {
+            flex: 1; /* Il testo prende lo spazio rimanente */
+            padding-right: 15px; /* Spazio per evitare collisioni col numero */
+        }
+        .ex-status {
+            font-weight: bold;
+            color: var(--accent);
+            white-space: nowrap; /* Impedisce di andare a capo */
+            flex-shrink: 0; /* Impedisce al container del numero di rimpicciolirsi */
+        }
+
         .ex-list-card h3 { margin: 0 0 5px 0; font-size: 16px; }
         .ex-list-card p { margin: 0; color: var(--text-muted); font-size: 13px; }
-        .ex-status { font-weight: bold; color: var(--accent); }
 
         /* Workout Screen */
         .header {
@@ -114,7 +126,7 @@
             max-width: 300px;
         }
         
-        .timer-text { font-size: 60px; font-weight: bold; color: var(--danger); margin: 0; }
+        .timer-text { font-size: 60px; font-weight: bold; color: var(--techno-gold); margin: 0; }
         .timer-sub { color: var(--text-muted); margin-bottom: 20px; }
         .btn-skip {
             background: transparent;
@@ -208,17 +220,12 @@
         let currentExIndex = 0;
         let currentSet = 1;
         
-        // Memoria sessione corrente: { "GiornoX": { 0: 2, 1: 0 } } -> Traccia i set completati oggi
         let sessionProgress = {}; 
-        
-        // Memoria permanente (LocalStorage): Traccia i carichi e i secondi salvati nel tempo
         let savedHistory = JSON.parse(localStorage.getItem('workoutHistory')) || {};
 
-        // Variabili per i timer basati sul tempo assoluto (Date.now())
         let restInterval = null;
         let activeInterval = null;
 
-        // --- INIZIALIZZAZIONE ---
         fetch('workout.json')
             .then(response => response.json())
             .then(data => {
@@ -227,7 +234,6 @@
             })
             .catch(error => alert("Errore nel caricamento di workout.json"));
 
-        // --- SCHERMATA HOME ---
         function renderHome() {
             const list = document.getElementById('daysList');
             list.innerHTML = '';
@@ -248,12 +254,10 @@
             document.getElementById('homeScreen').classList.remove('hidden');
         }
 
-        // --- SCHERMATA PANORAMICA GIORNO ---
         function openDayOverview(day) {
             selectedDay = day;
             document.getElementById('dayTitle').innerText = day.name.split(' ')[0] + " " + day.name.split(' ')[1];
             
-            // Inizializza i set completati per la sessione corrente, se non esiste
             if (!sessionProgress[day.id]) {
                 sessionProgress[day.id] = {};
                 day.exercises.forEach((ex, i) => sessionProgress[day.id][i] = 0);
@@ -288,17 +292,13 @@
         }
 
         function goToOverview() {
-            // Ferma tutti i timer pendenti
             clearInterval(restInterval);
             clearInterval(activeInterval);
             document.getElementById('workoutScreen').classList.add('hidden');
-            
-            // Aggiorna la lista e mostrala
             renderExerciseList();
             document.getElementById('overviewScreen').classList.remove('hidden');
         }
 
-        // --- SCHERMATA WORKOUT (ESERCIZIO) ---
         function startExercise(index) {
             currentExIndex = index;
             const ex = selectedDay.exercises[currentExIndex];
@@ -306,10 +306,9 @@
             
             if (setsDone >= ex.sets) {
                 if (!confirm("Hai già completato i set per questo esercizio. Vuoi ricominciare da capo?")) return;
-                sessionProgress[selectedDay.id][currentExIndex] = 0; // Reset set
+                sessionProgress[selectedDay.id][currentExIndex] = 0;
             }
             
-            // Calcola il set corrente basandosi su quanti ne hai fatti
             currentSet = sessionProgress[selectedDay.id][currentExIndex] + 1;
             
             document.getElementById('overviewScreen').classList.add('hidden');
@@ -330,7 +329,6 @@
             document.getElementById('exSet').innerText = `${currentSet} / ${ex.sets}`;
             document.getElementById('exRepsRir').innerText = `${ex.reps} | RIR: ${ex.rir}`;
             
-            // Gestione Tipologia Esercizio (Pesi vs Tempo)
             const inputField = document.getElementById('exInput');
             if (isTimedExercise(ex)) {
                 document.getElementById('inputLabel').innerText = "Secondi Eseguiti:";
@@ -342,7 +340,6 @@
                 document.getElementById('activeTimerArea').classList.add('hidden');
             }
 
-            // Pre-compila l'input con lo storico salvato in precedenza
             if (savedHistory[ex.name]) {
                 inputField.value = savedHistory[ex.name];
             } else {
@@ -354,29 +351,24 @@
 
         function completeSet() {
             const ex = selectedDay.exercises[currentExIndex];
-            
-            // Salva il peso o i secondi in modo permanente
             const inputValue = document.getElementById('exInput').value;
+            
             if (inputValue !== '') {
                 savedHistory[ex.name] = inputValue;
                 localStorage.setItem('workoutHistory', JSON.stringify(savedHistory));
             }
             
-            // Incrementa i set completati
             sessionProgress[selectedDay.id][currentExIndex]++;
             currentSet = sessionProgress[selectedDay.id][currentExIndex] + 1;
             
             if (currentSet <= ex.sets) {
-                // Ci sono ancora set, avvia il recupero
                 startRest(ex.restSeconds);
             } else {
-                // Esercizio terminato, torna alla panoramica
                 alert(`Hai completato tutti i set di ${ex.name}!`);
                 goToOverview();
             }
         }
 
-        // --- GESTIONE TIMER ESECUZIONE ATTIVA (es. Plank) ---
         function startActiveTimer() {
             const inputVal = parseInt(document.getElementById('exInput').value);
             if (!inputVal || inputVal <= 0) {
@@ -401,12 +393,9 @@
             }, 1000);
         }
 
-        // --- GESTIONE TIMER RECUPERO (BACKGROUND PROOF) ---
         function startRest(seconds) {
             showRestArea(true);
             const endTime = Date.now() + (seconds * 1000);
-            
-            // Aggiorna subito al primo avvio
             updateRestDisplay(seconds);
             
             clearInterval(restInterval);
@@ -415,7 +404,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(restInterval);
                     showRestArea(false);
-                    updateWorkoutUI(); // Prepara l'interfaccia per il set successivo
+                    updateWorkoutUI();
                 } else {
                     updateRestDisplay(timeLeft);
                 }
@@ -442,21 +431,17 @@
             } else {
                 document.getElementById('completeBtn').classList.remove('hidden');
                 document.getElementById('restArea').classList.add('hidden');
-                // L'active timer lo rimette visible updateWorkoutUI() se necessario
             }
         }
 
-        // --- ESPORTAZIONE DATI ---
         function exportData() {
             const dataStr = localStorage.getItem('workoutHistory');
             if (!dataStr || dataStr === '{}') {
                 alert("Non hai ancora salvato nessun peso o tempo.");
                 return;
             }
-            
             const blob = new Blob([dataStr], { type: "application/json" });
             const url = URL.createObjectURL(blob);
-            
             const a = document.createElement('a');
             a.href = url;
             a.download = `Palestra_Storico_${new Date().toISOString().slice(0,10)}.json`;
