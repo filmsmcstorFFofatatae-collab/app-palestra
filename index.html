@@ -86,6 +86,7 @@
             margin-bottom: 20px;
         }
         .workout-card h2 { text-align: center; margin-top: 0; margin-bottom: 25px; font-size: 20px; }
+        
         .info-row {
             display: flex;
             justify-content: space-between;
@@ -151,6 +152,30 @@
             width: 100%;
             max-width: 300px;
         }
+
+        /* Nuovi stili per Spiegazioni e Video */
+        .btn-video {
+            display: inline-block;
+            background-color: var(--techno-gold);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .explanation-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .explanation-divider {
+            border-top: 1px dashed #333;
+            margin: 15px 0;
+            padding-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -181,6 +206,18 @@
         <div class="workout-card">
             <h2 id="exName"></h2>
             
+            <!-- Inizio Sezione Spiegazioni e Video -->
+            <div id="exExplanationContainer" class="hidden">
+                <p id="exExplanation" class="explanation-text"></p>
+                <a id="exVideoBtn" href="#" target="_blank" class="btn-video">📹 Guarda Video</a>
+            </div>
+            
+            <div id="exExplanationContainer2" class="hidden explanation-divider">
+                <p id="exExplanation2" class="explanation-text"></p>
+                <a id="exVideoBtn2" href="#" target="_blank" class="btn-video">📹 Guarda Video (Alternativa)</a>
+            </div>
+            <!-- Fine Sezione Spiegazioni e Video -->
+
             <!-- Zona Timer Attivo (es. per Plank) -->
             <div id="activeTimerArea" class="hidden action-area" style="margin-top:0; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #333;">
                 <p class="timer-text" id="activeTimerDisplay" style="color: var(--accent); font-size: 45px;">0:00</p>
@@ -273,8 +310,10 @@
             list.innerHTML = '';
             
             selectedDay.exercises.forEach((ex, i) => {
-                const setsDone = sessionProgress[selectedDay.id][i];
-                const isCompleted = setsDone >= ex.sets;
+                // Gestione per gli esercizi di solo riscaldamento/stretching che non hanno "sets" impostato
+                const totalSets = ex.sets ? ex.sets : 1; 
+                const setsDone = sessionProgress[selectedDay.id][i] || 0;
+                const isCompleted = setsDone >= totalSets;
                 
                 const card = document.createElement('div');
                 card.className = `ex-list-card ${isCompleted ? 'completed' : ''}`;
@@ -283,9 +322,9 @@
                 card.innerHTML = `
                     <div>
                         <h3>${ex.name}</h3>
-                        <p>${ex.reps} | RIR: ${ex.rir}</p>
+                        <p>${ex.reps ? ex.reps + ' | RIR: ' + ex.rir : 'Esercizio libero'}</p>
                     </div>
-                    <div class="ex-status">${setsDone} / ${ex.sets}</div>
+                    <div class="ex-status">${setsDone} / ${totalSets}</div>
                 `;
                 list.appendChild(card);
             });
@@ -302,9 +341,10 @@
         function startExercise(index) {
             currentExIndex = index;
             const ex = selectedDay.exercises[currentExIndex];
+            const totalSets = ex.sets ? ex.sets : 1;
             const setsDone = sessionProgress[selectedDay.id][currentExIndex];
             
-            if (setsDone >= ex.sets) {
+            if (setsDone >= totalSets) {
                 if (!confirm("Hai già completato i set per questo esercizio. Vuoi ricominciare da capo?")) return;
                 sessionProgress[selectedDay.id][currentExIndex] = 0;
             }
@@ -317,6 +357,7 @@
         }
 
         function isTimedExercise(ex) {
+            if(!ex.reps || !ex.rir) return false;
             const reps = ex.reps.toLowerCase();
             const rir = ex.rir.toLowerCase();
             return reps.includes('s') || rir.includes('isometrica');
@@ -324,11 +365,44 @@
 
         function updateWorkoutUI() {
             const ex = selectedDay.exercises[currentExIndex];
+            const totalSets = ex.sets ? ex.sets : 1;
+            
             document.getElementById('progressText').innerText = `Es. ${currentExIndex + 1} di ${selectedDay.exercises.length}`;
             document.getElementById('exName').innerText = ex.name;
-            document.getElementById('exSet').innerText = `${currentSet} / ${ex.sets}`;
-            document.getElementById('exRepsRir').innerText = `${ex.reps} | RIR: ${ex.rir}`;
+            document.getElementById('exSet').innerText = `${currentSet} / ${totalSets}`;
+            document.getElementById('exRepsRir').innerText = ex.reps ? `${ex.reps} | RIR: ${ex.rir}` : '-';
             
+            // --- GESTIONE SPIEGAZIONI E VIDEO ---
+            if (ex.explanation) {
+                document.getElementById('exExplanationContainer').classList.remove('hidden');
+                document.getElementById('exExplanation').innerText = ex.explanation;
+                
+                if (ex.videoLink) {
+                    document.getElementById('exVideoBtn').href = ex.videoLink;
+                    document.getElementById('exVideoBtn').style.display = 'inline-block';
+                } else {
+                    document.getElementById('exVideoBtn').style.display = 'none';
+                }
+            } else {
+                document.getElementById('exExplanationContainer').classList.add('hidden');
+            }
+
+            // Varianti secondarie (es. Pulley invece di Low Row)
+            if (ex.explanation2) {
+                document.getElementById('exExplanationContainer2').classList.remove('hidden');
+                document.getElementById('exExplanation2').innerText = ex.explanation2;
+                
+                if (ex.videoLink2) {
+                    document.getElementById('exVideoBtn2').href = ex.videoLink2;
+                    document.getElementById('exVideoBtn2').style.display = 'inline-block';
+                } else {
+                    document.getElementById('exVideoBtn2').style.display = 'none';
+                }
+            } else {
+                document.getElementById('exExplanationContainer2').classList.add('hidden');
+            }
+            // ------------------------------------
+
             const inputField = document.getElementById('exInput');
             if (isTimedExercise(ex)) {
                 document.getElementById('inputLabel').innerText = "Secondi Eseguiti:";
@@ -352,6 +426,7 @@
         function completeSet() {
             const ex = selectedDay.exercises[currentExIndex];
             const inputValue = document.getElementById('exInput').value;
+            const totalSets = ex.sets ? ex.sets : 1;
             
             if (inputValue !== '') {
                 savedHistory[ex.name] = inputValue;
@@ -361,11 +436,15 @@
             sessionProgress[selectedDay.id][currentExIndex]++;
             currentSet = sessionProgress[selectedDay.id][currentExIndex] + 1;
             
-            if (currentSet <= ex.sets) {
-                startRest(ex.restSeconds);
+            if (currentSet <= totalSets) {
+                const restTime = ex.restSeconds ? ex.restSeconds : 60; // default 60 se assente
+                startRest(restTime);
             } else {
-                alert(`Hai completato tutti i set di ${ex.name}!`);
-                goToOverview();
+                // Piccolo timeout per far vedere l'aggiornamento prima di uscire
+                setTimeout(() => {
+                    alert(`Hai completato tutti i set di ${ex.name}!`);
+                    goToOverview();
+                }, 100);
             }
         }
 
