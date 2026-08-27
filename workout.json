@@ -144,19 +144,14 @@
           "videoLink2": "https://www.youtube.com/shorts/ym1V5H35IpA"
         },
         { 
-          "name": "Chest Supported Row Machine", "sets": "4", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
-          "explanation": "Petto ben incollato al supporto per salvare la lombare. Tira col dorso permettendo un leggero allungamento delle scapole in discesa.", 
-          "videoLink": "https://www.youtube.com/shorts/36sT4np_G1E" 
-        },
-        { 
           "name": "Shoulder Press", "sets": "3", "reps": "8-10", "rir": "2", "restSeconds": 120, 
           "explanation": "Spingi verticalmente tenendo i gomiti leggermente chiusi in avanti (piano scapolare) per proteggere le articolazioni.", 
           "videoLink": "https://www.youtube.com/shorts/6v4nrRVySj0" 
         },
         { 
-          "name": "Chest Press", "sets": "3", "reps": "8-10", "rir": "1", "restSeconds": 120, 
-          "explanation": "Seconda sessione settimanale. Focus massimo sulla contrazione. Se hai il petto troppo stanco, riduci il peso.", 
-          "videoLink": "https://www.youtube.com/shorts/Qu7-ceCvq7w" 
+          "name": "T-Bar Row", "sets": "4", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
+          "explanation": "Petto ben incollato al supporto per salvare la lombare. Tira col dorso permettendo un leggero allungamento delle scapole in discesa.", 
+          "videoLink": "https://www.youtube.com/shorts/36sT4np_G1E" 
         },
         { 
           "name": "Croci ai manubri", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
@@ -164,14 +159,14 @@
           "videoLink": "https://www.youtube.com/shorts/rk8YayRoTRQ" 
         },
         { 
-          "name": "Rear Delt ai Cavi", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
-          "explanation": "Cavi incrociati. Non addurre (stringere) le scapole; tieni la schiena fissa e muovi solo le braccia all'indietro per isolare il deltoide posteriore.", 
-          "videoLink": "https://www.youtube.com/shorts/FeERX9UwspY" 
-        },
-        { 
           "name": "Alzate Laterali Cavi", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
           "explanation": "Il cavo passa dietro o davanti al corpo. Tensione costante dal basso verso l'alto senza usare lo slancio.", 
           "videoLink": "https://www.youtube.com/shorts/lMJUXEvcMkQ" 
+        },
+        { 
+          "name": "Rear Delt ai Cavi", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
+          "explanation": "Cavi incrociati. Non addurre (stringere) le scapole; tieni la schiena fissa e muovi solo le braccia all'indietro per isolare il deltoide posteriore.", 
+          "videoLink": "https://www.youtube.com/shorts/FeERX9UwspY" 
         },
         { 
           "name": "Chest Supported Y-Raise", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 60, 
@@ -179,9 +174,14 @@
           "videoLink": "https://www.youtube.com/watch?v=nvGTvUiaEOs" 
         },
         { 
-          "name": "(Concentration) Hammer Curl", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
-          "explanation": "Seduto, braccio appoggiato all'interno coscia. Presa neutra (a martello) per isolare a morte il brachiale.", 
-          "videoLink": "https://www.youtube.com/shorts/8H5oWMNWWeQ" 
+          "name": "Spider Curl Manubri", "sets": "3", "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 75, 
+          "explanation": "Pancia appoggiata su panca inclinata a 45° e braccia a piombo perpendicolari al pavimento. Fletti le braccia mantenendo i gomiti fermi, strizza forte il picco del bicipite per 1 secondo in cima ed esegui una discesa lenta e controllata.", 
+          "videoLink": "https://www.youtube.com/shorts/ivS3G35bapw" 
+        },
+        { 
+          "name": "(Seated) Hammer Curl", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
+          "explanation": "Seduto con schiena dritta o appoggiata a 90° (oppure con gomito vincolato all'interno coscia). Presa neutra a martello con pollici verso l'alto: fletti l'avambraccio senza oscillare con il busto, contrai forte il brachiale in cima e controlla la fase eccentrica."", 
+          "videoLink": "https://www.youtube.com/shorts/Z7gLnOCO89c" 
         },
         { 
           "name": "(Seated) Overhead Tricep Ext", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
@@ -191,7 +191,7 @@
         { 
           "name": "Stretching Upper", 
           "explanation": "Shoulder stretch, Arm / chest stretch, Bicep stretch, Spine stretch, Neck stretch, Forearm stretch, Triceps stretch, Oblique stretch", 
-          "videoLink": "https://www.youtube.com/shorts/Ff7MWn85wEw" 
+          "videoLink": "https://www.youtube.com/watch?v=bgMNXt88RQ8" 
         }
       ]
     },
@@ -199,11 +199,6 @@
       "id": "A",
       "name": "GIORNO A",
       "exercises": [
-        { 
-          "name": "Riscaldamento Upper (Opt)", 
-          "explanation": "Horizontal arm swings, vertical arm swings, arm crossovers, full arm swing, trunk rotations, banded dislocations, banded pull aparts, banded external rotation, wall slides", 
-          "videoLink": "https://www.youtube.com/shorts/Ff7MWn85wEw" 
-        },
         { 
           "name": "Riscaldamento Lower", 
           "explanation": "Air squats, side lunges, hip openers, leg swings", 
@@ -230,26 +225,12 @@
           "videoLink": "https://www.youtube.com/shorts/S2yhz3klwdU" 
         },
         { 
-          "name": "[CALI SS 1] Chin up + Dip (Opt)", "sets": "3", "reps": "6-8 / 8-10", "rir": "1-2", "restSeconds": 75, 
-          "explanation": "Chin-up: Presa supina a larghezza spalle. Tira portando il petto verso la sbarra e i gomiti verso il basso, controllando la discesa fino a distendere le braccia.", 
-          "videoLink": "https://www.youtube.com/shorts/Oi3bW9nQmGI",
-          "explanation2": "Dip alle parallele: Spalle depresse (lontane dalle orecchie), busto leggermente inclinato in avanti. Scendi fino a circa 90° al gomito e spingi con forza senza iperestendere a scatto.", 
-          "videoLink2": "https://www.youtube.com/shorts/CrbIq-T-h8I" 
-        },
-        { 
-          "name": "[CALI SS 2] Australian Pull up + Push up (Opt)", "sets": "2-3", "reps": "10-12 / 12-15", "rir": "1", "restSeconds": 75, 
-          "explanation": "Australian Pull-up (Trazioni orizzontali): Posizionati sotto una sbarra o TRX a corpo teso come in un plank. Tira il petto verso la sbarra adducendo le scapole e mantieni i glutei contratti senza inarcare la schiena.", 
-          "videoLink": "https://www.youtube.com/shorts/qfsEK96Px-E",
-          "explanation2": "Push-up (Piegamenti): Mani poco più larghe delle spalle, gomiti a circa 45° rispetto al busto (non aperti a T). Scendi finché il petto sfiora terra mantenendo il core rigido, poi spingi fino a distendere le braccia.", 
-          "videoLink2": "https://www.youtube.com/shorts/4Bc1tPaYkOo" 
-        },
-        { 
           "name": "Bench Reverse Crunch", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
           "explanation": "Isolamento profondo del basso addome. Afferra la panca dietro la testa, solleva il bacino arrotolandolo verso l'alto.", 
           "videoLink": "https://www.youtube.com/shorts/KJ-2XT9Uu-E" 
         },
         { 
-          "name": "Crunch con disco / Cable Crunch (Opt)", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
+          "name": "Crunch con disco / Cable Crunch", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
           "explanation": "Crunch con disco: Tieni un disco dietro la nuca. Fletti la colonna vertebrale strizzando forte l'addome (non tirare il collo).", 
           "videoLink": "https://www.instagram.com/p/DcC30sZhoKh/",
           "explanation2": "Cable Crunch: In ginocchio al cavo alto. Arrotola la schiena portando i gomiti verso le ginocchia usando solo l'addome.",
@@ -271,11 +252,6 @@
           "name": "Stretching Lower", 
           "explanation": "Ricorda anche lo stretching degli addominali", 
           "videoLink": "https://www.youtube.com/shorts/b8O0u9qnRS4" 
-        },
-        { 
-          "name": "Stretching Upper (Opt)", 
-          "explanation": "Shoulder stretch, Arm / chest stretch, Bicep stretch, Spine stretch, Abs stretch, Neck stretch, Forearm stretch, Triceps stretch, Oblique stretch", 
-          "videoLink": "https://www.youtube.com/shorts/Ff7MWn85wEw" 
         }
       ]
     }
