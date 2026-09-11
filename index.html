@@ -205,6 +205,7 @@
 
         <div class="workout-card">
             <h2 id="exName"></h2>
+            <p id="exTarget" style="text-align: center; color: var(--techno-gold); margin-top: -20px; margin-bottom: 25px; font-size: 14px; font-weight: bold;"></p>
             
             <!-- Inizio Sezione Spiegazioni e Video -->
             <div id="exExplanationContainer" class="hidden">
@@ -257,20 +258,68 @@
         let currentExIndex = 0;
         let currentSet = 1;
         
-        let sessionProgress = {}; 
+        // Carica i progressi della sessione o crea un oggetto vuoto
+        let sessionProgress = JSON.parse(localStorage.getItem('sessionProgress')) || {}; 
         let savedHistory = JSON.parse(localStorage.getItem('workoutHistory')) || {};
-
+    
         let restInterval = null;
         let activeInterval = null;
-
+    
+        // Salva lo stato corrente dell'app per evitare reset
+        function saveAppState(screen) {
+            const state = {
+                screen: screen,
+                dayId: selectedDay ? selectedDay.id : null,
+                exIndex: currentExIndex,
+                timestamp: Date.now()
+            };
+            localStorage.setItem('appState', JSON.stringify(state));
+            localStorage.setItem('sessionProgress', JSON.stringify(sessionProgress));
+        }
+    
+        // Ripristina lo stato al caricamento
+        function restoreAppState() {
+            const state = JSON.parse(localStorage.getItem('appState'));
+            if (!state) return;
+            
+            // Se la sessione è più vecchia di 12 ore, cancellala
+            if (Date.now() - state.timestamp > 12 * 60 * 60 * 1000) {
+                localStorage.removeItem('appState');
+                localStorage.removeItem('sessionProgress');
+                sessionProgress = {};
+                return;
+            }
+    
+            if (state.screen === 'overview' && state.dayId) {
+                const day = workoutData.days.find(d => d.id === state.dayId);
+                if (day) openDayOverview(day, false);
+            } else if (state.screen === 'workout' && state.dayId) {
+                const day = workoutData.days.find(d => d.id === state.dayId);
+                if (day) {
+                    selectedDay = day;
+                    currentExIndex = state.exIndex || 0;
+                    if (!sessionProgress[day.id]) {
+                        sessionProgress[day.id] = {};
+                        day.exercises.forEach((ex, i) => sessionProgress[day.id][i] = 0);
+                    }
+                    currentSet = sessionProgress[day.id][currentExIndex] + 1;
+                    
+                    document.getElementById('homeScreen').classList.add('hidden');
+                    document.getElementById('workoutScreen').classList.remove('hidden');
+                    updateWorkoutUI();
+                }
+            }
+        }
+    
         fetch('workout.json')
             .then(response => response.json())
             .then(data => {
                 workoutData = data;
                 renderHome();
+                restoreAppState();
             })
             .catch(error => alert("Errore nel caricamento di workout.json"));
-
+    
         function renderHome() {
             const list = document.getElementById('daysList');
             list.innerHTML = '';
@@ -285,13 +334,14 @@
                 list.appendChild(card);
             });
         }
-
+    
         function goHome() {
             document.getElementById('overviewScreen').classList.add('hidden');
             document.getElementById('homeScreen').classList.remove('hidden');
+            saveAppState('home');
         }
-
-        function openDayOverview(day) {
+    
+        function openDayOverview(day, save = true) {
             selectedDay = day;
             document.getElementById('dayTitle').innerText = day.name.split(' ')[0] + " " + day.name.split(' ')[1];
             
@@ -299,18 +349,18 @@
                 sessionProgress[day.id] = {};
                 day.exercises.forEach((ex, i) => sessionProgress[day.id][i] = 0);
             }
-
+    
             renderExerciseList();
             document.getElementById('homeScreen').classList.add('hidden');
             document.getElementById('overviewScreen').classList.remove('hidden');
+            if(save) saveAppState('overview');
         }
-
+    
         function renderExerciseList() {
             const list = document.getElementById('exerciseList');
             list.innerHTML = '';
             
             selectedDay.exercises.forEach((ex, i) => {
-                // Gestione per gli esercizi di solo riscaldamento/stretching che non hanno "sets" impostato
                 const totalSets = ex.sets ? ex.sets : 1; 
                 const setsDone = sessionProgress[selectedDay.id][i] || 0;
                 const isCompleted = setsDone >= totalSets;
@@ -323,21 +373,23 @@
                     <div>
                         <h3>${ex.name}</h3>
                         <p>${ex.reps ? ex.reps + ' | RIR: ' + ex.rir : 'Esercizio libero'}</p>
+                        <p style="color: var(--techno-gold); font-size: 11px; margin-top: 3px;">🎯 ${ex.target || 'Riscaldamento / Mobilità'}</p>
                     </div>
                     <div class="ex-status">${setsDone} / ${totalSets}</div>
                 `;
                 list.appendChild(card);
             });
         }
-
+    
         function goToOverview() {
             clearInterval(restInterval);
             clearInterval(activeInterval);
             document.getElementById('workoutScreen').classList.add('hidden');
             renderExerciseList();
             document.getElementById('overviewScreen').classList.remove('hidden');
+            saveAppState('overview');
         }
-
+    
         function startExercise(index) {
             currentExIndex = index;
             const ex = selectedDay.exercises[currentExIndex];
@@ -354,29 +406,29 @@
             document.getElementById('overviewScreen').classList.add('hidden');
             document.getElementById('workoutScreen').classList.remove('hidden');
             updateWorkoutUI();
+            saveAppState('workout');
         }
-
+    
         function isTimedExercise(ex) {
             if(!ex.reps || !ex.rir) return false;
             const reps = ex.reps.toLowerCase();
             const rir = ex.rir.toLowerCase();
             return reps.includes('s') || rir.includes('isometrica');
         }
-
+    
         function updateWorkoutUI() {
             const ex = selectedDay.exercises[currentExIndex];
             const totalSets = ex.sets ? ex.sets : 1;
             
             document.getElementById('progressText').innerText = `Es. ${currentExIndex + 1} di ${selectedDay.exercises.length}`;
             document.getElementById('exName').innerText = ex.name;
+            document.getElementById('exTarget').innerText = ex.target ? `🎯 Allena: ${ex.target}` : '';
             document.getElementById('exSet').innerText = `${currentSet} / ${totalSets}`;
             document.getElementById('exRepsRir').innerText = ex.reps ? `${ex.reps} | RIR: ${ex.rir}` : '-';
             
-            // --- GESTIONE SPIEGAZIONI E VIDEO ---
             if (ex.explanation) {
                 document.getElementById('exExplanationContainer').classList.remove('hidden');
                 document.getElementById('exExplanation').innerText = ex.explanation;
-                
                 if (ex.videoLink) {
                     document.getElementById('exVideoBtn').href = ex.videoLink;
                     document.getElementById('exVideoBtn').style.display = 'inline-block';
@@ -386,12 +438,10 @@
             } else {
                 document.getElementById('exExplanationContainer').classList.add('hidden');
             }
-
-            // Varianti secondarie (es. Pulley invece di Low Row)
+    
             if (ex.explanation2) {
                 document.getElementById('exExplanationContainer2').classList.remove('hidden');
                 document.getElementById('exExplanation2').innerText = ex.explanation2;
-                
                 if (ex.videoLink2) {
                     document.getElementById('exVideoBtn2').href = ex.videoLink2;
                     document.getElementById('exVideoBtn2').style.display = 'inline-block';
@@ -401,8 +451,7 @@
             } else {
                 document.getElementById('exExplanationContainer2').classList.add('hidden');
             }
-            // ------------------------------------
-
+    
             const inputField = document.getElementById('exInput');
             if (isTimedExercise(ex)) {
                 document.getElementById('inputLabel').innerText = "Secondi Eseguiti:";
@@ -413,7 +462,7 @@
                 document.getElementById('inputLabel').innerText = "Carico (kg):";
                 document.getElementById('activeTimerArea').classList.add('hidden');
             }
-
+    
             if (savedHistory[ex.name]) {
                 inputField.value = savedHistory[ex.name];
             } else {
@@ -422,7 +471,7 @@
             
             showRestArea(false);
         }
-
+    
         function completeSet() {
             const ex = selectedDay.exercises[currentExIndex];
             const inputValue = document.getElementById('exInput').value;
@@ -435,26 +484,26 @@
             
             sessionProgress[selectedDay.id][currentExIndex]++;
             currentSet = sessionProgress[selectedDay.id][currentExIndex] + 1;
+            saveAppState('workout');
             
             if (currentSet <= totalSets) {
-                const restTime = ex.restSeconds ? ex.restSeconds : 60; // default 60 se assente
+                const restTime = ex.restSeconds ? ex.restSeconds : 60;
                 startRest(restTime);
             } else {
-                // Piccolo timeout per far vedere l'aggiornamento prima di uscire
                 setTimeout(() => {
                     alert(`Hai completato tutti i set di ${ex.name}!`);
                     goToOverview();
                 }, 100);
             }
         }
-
+    
         function startActiveTimer() {
             const inputVal = parseInt(document.getElementById('exInput').value);
             if (!inputVal || inputVal <= 0) {
                 alert("Inserisci i secondi che vuoi eseguire nella casella in basso.");
                 return;
             }
-
+    
             const endTime = Date.now() + (inputVal * 1000);
             clearInterval(activeInterval);
             
@@ -471,7 +520,7 @@
                 }
             }, 1000);
         }
-
+    
         function startRest(seconds) {
             showRestArea(true);
             const endTime = Date.now() + (seconds * 1000);
@@ -489,19 +538,19 @@
                 }
             }, 1000);
         }
-
+    
         function updateRestDisplay(timeLeft) {
             const m = Math.floor(timeLeft / 60);
             const s = timeLeft % 60;
             document.getElementById('restTimerDisplay').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
         }
-
+    
         function skipRest() {
             clearInterval(restInterval);
             showRestArea(false);
             updateWorkoutUI();
         }
-
+    
         function showRestArea(isResting) {
             if (isResting) {
                 document.getElementById('completeBtn').classList.add('hidden');
@@ -512,7 +561,7 @@
                 document.getElementById('restArea').classList.add('hidden');
             }
         }
-
+    
         function exportData() {
             const dataStr = localStorage.getItem('workoutHistory');
             if (!dataStr || dataStr === '{}') {
