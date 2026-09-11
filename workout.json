@@ -26,19 +26,19 @@
           "videoLink": "https://www.youtube.com/shorts/QuSqYj7tFbI" 
         },
         { 
-          "name": "Cable rows", "target": "Dorso Centrale, Bicipiti", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 75, 
-          "explanation": "Seduto al cavo basso, mantieni la schiena dritta e tira il triangolo verso l'addome basso.", 
+          "name": "Cable rows (Sbarra Dritta)", "target": "Alta Schiena (Romboidi, Trapezi), Bicipiti", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 75, 
+          "explanation": "Usa una sbarra dritta con presa prona (palmi in giù). Tieni i gomiti leggermente larghi per spostare il focus sull'alta schiena e i romboidi, adducendo bene le scapole quando tiri.", 
           "videoLink": "https://www.youtube.com/shorts/qD1WZ5pSuvk"
-        },
-        { 
-          "name": "Cable Pullover", "target": "Gran Dorsale", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
-          "explanation": "Braccia leggermente flesse e bloccate. Spingi la sbarra verso il bacino usando solo il gran dorsale in massimo allungamento.", 
-          "videoLink": "https://www.youtube.com/shorts/Pu5J04uf2NI" 
         },
         { 
           "name": "(Chest-Supported) Lateral Raises", "target": "Deltoidi Laterali", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
           "explanation": "Petto in appoggio su panca inclinata (60-70°). Solleva i manubri lateralmente senza poter usare la schiena per barare.", 
           "videoLink": "https://www.youtube.com/shorts/Kl3LEzQ5Zqs" 
+        },
+        { 
+          "name": "Chest Supported Y-Raise", "target": "Trapezi Inferiori, Deltoidi Posteriori", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 60, 
+          "explanation": "Petto su panca inclinata, pesi leggerissimi. Blocca le scapole in basso e solleva a formare una Y per i trapezi inferiori.", 
+          "videoLink": "https://www.youtube.com/watch?v=nvGTvUiaEOs" 
         },
         { 
           "name": "Curl Panca Inclinata 45°", "target": "Bicipiti (Capo Lungo)", "sets": "3", "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 75, 
@@ -132,8 +132,8 @@
           "videoLink": "https://www.youtube.com/shorts/Ff7MWn85wEw" 
         },
         { 
-          "name": "Lat Machine / Trazioni", "target": "Gran Dorsale, Bicipiti", "sets": "3", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
-          "explanation": "Lat Machine: Petto in fuori, tira la sbarra verso la parte alta del petto portando i gomiti dritti verso il basso.", 
+          "name": "Lat Machine Sbarra / Trazioni", "target": "Gran Dorsale, Bicipiti", "sets": "3", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
+          "explanation": "Lat Machine: Sbarra dritta e presa larga. Petto in fuori, tira verso la parte alta del petto isolando l'apertura dorsale.", 
           "videoLink": "https://www.youtube.com/shorts/lmatGLlm1qsy",
           "explanation2": "Trazioni: Appeso alla sbarra, deprimi le scapole e tirati su fino a superare la sbarra col mento senza slanci.",
           "videoLink2": "https://www.youtube.com/shorts/ym1V5H35IpA"
@@ -144,13 +144,13 @@
           "videoLink": "https://www.youtube.com/shorts/6v4nrRVySj0" 
         },
         { 
-          "name": "T-Bar Row", "target": "Dorso, Bicipiti", "sets": "4", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
-          "explanation": "Petto ben incollato al supporto per salvare la lombare. Tira col dorso permettendo un leggero allungamento delle scapole in discesa.", 
+          "name": "T-Bar Row", "target": "Gran Dorsale, Bicipiti", "sets": "4", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
+          "explanation": "Usa la presa a 45 gradi (maniglie parallele/neutre). Tieni i gomiti chiusi lungo i fianchi per massimizzare il lavoro sul Gran Dorsale in sicurezza.", 
           "videoLink": "https://www.youtube.com/shorts/36sT4np_G1E" 
         },
         { 
           "name": "Croci ai manubri", "target": "Pettorali", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
-          "explanation": "Braccia leggermente flesse. Scendi con un arco ampio per massimizzare l'allungamento del petto, ma fermati quando i gomiti sono in linea con le spalle per non sforzarle. Risali stringendo i pettorali come per abbracciare un grosso albero.", 
+          "explanation": "Braccia leggermente flesse. Scendi con un arco ampio per massimizzare l'allungamento del petto, ma fermati quando i gomiti sono in linea con le spalle. Risali stringendo i pettorali.", 
           "videoLink": "https://www.youtube.com/shorts/rk8YayRoTRQ" 
         },
         { 
@@ -164,18 +164,13 @@
           "videoLink": "https://www.youtube.com/shorts/FeERX9UwspY" 
         },
         { 
-          "name": "Chest Supported Y-Raise", "target": "Trapezi Inferiori, Deltoidi Posteriori", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 60, 
-          "explanation": "Petto su panca inclinata, pesi leggerissimi. Blocca le scapole in basso e solleva a formare una Y per i trapezi inferiori.", 
-          "videoLink": "https://www.youtube.com/watch?v=nvGTvUiaEOs" 
-        },
-        { 
-          "name": "Spider Curl Manubri", "target": "Bicipiti (Capo Breve)", "sets": "3", "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 75, 
-          "explanation": "Pancia appoggiata su panca inclinata a 45° e braccia a piombo perpendicolari al pavimento. Fletti le braccia mantenendo i gomiti fermi, strizza forte il picco del bicipite per 1 secondo in cima ed esegui una discesa lenta e controllata.", 
+          "name": "(Opt) Spider Curl Manubri", "target": "Bicipiti (Capo Breve)", "sets": "2", "reps": "10-12", "rir": "0-1", "restSeconds": 75, 
+          "explanation": "Esercizio opzionale. Pancia su panca a 45° e braccia a piombo. Fletti le braccia mantenendo i gomiti fermi, strizza forte il bicipite in cima.", 
           "videoLink": "https://www.youtube.com/shorts/ivS3G35bapw" 
         },
         { 
           "name": "(Seated) Hammer Curl", "target": "Brachiale, Brachioradiale", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
-          "explanation": "Seduto con schiena dritta o appoggiata a 90° (oppure con gomito vincolato all'interno coscia). Presa neutra a martello con pollici verso l'alto: fletti l'avambraccio senza oscillare con il busto, contrai forte il brachiale in cima e controlla la fase eccentrica.", 
+          "explanation": "Seduto con schiena dritta. Presa neutra a martello con pollici verso l'alto: fletti l'avambraccio senza oscillare con il busto e controlla la discesa.", 
           "videoLink": "https://www.youtube.com/shorts/Z7gLnOCO89c" 
         },
         { 
