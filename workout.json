@@ -6,57 +6,57 @@
       "name": "GIORNO X",
       "exercises": [
         { 
-          "name": "Riscaldamento Upper", 
+          "name": "Riscaldamento Upper", "target": "Mobilità Upper Body",
           "explanation": "Horizontal arm swings, vertical arm swings, arm crossovers, full arm swing, trunk rotations, banded dislocations, banded pull aparts, banded external rotation, wall slides", 
           "videoLink": "https://www.youtube.com/shorts/Ff7MWn85wEw" 
         },
         { 
-          "name": "Chest Press", "sets": "4", "reps": "6-8", "rir": "2", "restSeconds": 120, 
+          "name": "Chest Press", "target": "Pettorali, Deltoidi Anteriori, Tricipiti", "sets": "4", "reps": "6-8", "rir": "2", "restSeconds": 120, 
           "explanation": "Spalle depresse e scapole addotte. Movimento controllato, massima estensione del petto in fase eccentrica.", 
           "videoLink": "https://www.youtube.com/shorts/Qu7-ceCvq7w" 
         },
         { 
-          "name": "Panca Inclinata Manubri 30°", "sets": "3", "reps": "8-10", "rir": "1", "restSeconds": 120, 
+          "name": "Panca Inclinata Manubri 30°", "target": "Pettorali (Fasci Clavicolari)", "sets": "3", "reps": "8-10", "rir": "1", "restSeconds": 120, 
           "explanation": "Panca a 30°. Scendi profondo per allungare il petto, non far sbattere i manubri in chiusura per mantenere la tensione.", 
           "videoLink": "https://www.youtube.com/shorts/8fXfwG4ftaQ" 
         },
         { 
-          "name": "Lat Machine Presa Neutra", "sets": "4", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
+          "name": "Lat Machine Presa Neutra", "target": "Gran Dorsale, Bicipiti", "sets": "4", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
           "explanation": "Petto in fuori, tira la sbarra verso la parte alta del petto portando i gomiti dritti verso il basso.", 
           "videoLink": "https://www.youtube.com/shorts/QuSqYj7tFbI" 
         },
         { 
-          "name": "Cable rows", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 75, 
+          "name": "Cable rows", "target": "Dorso Centrale, Bicipiti", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 75, 
           "explanation": "Seduto al cavo basso, mantieni la schiena dritta e tira il triangolo verso l'addome basso.", 
           "videoLink": "https://www.youtube.com/shorts/qD1WZ5pSuvk"
         },
         { 
-          "name": "Cable Pullover", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
+          "name": "Cable Pullover", "target": "Gran Dorsale", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
           "explanation": "Braccia leggermente flesse e bloccate. Spingi la sbarra verso il bacino usando solo il gran dorsale in massimo allungamento.", 
           "videoLink": "https://www.youtube.com/shorts/Pu5J04uf2NI" 
         },
         { 
-          "name": "(Chest-Supported) Lateral Raises", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
+          "name": "(Chest-Supported) Lateral Raises", "target": "Deltoidi Laterali", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
           "explanation": "Petto in appoggio su panca inclinata (60-70°). Solleva i manubri lateralmente senza poter usare la schiena per barare.", 
           "videoLink": "https://www.youtube.com/shorts/Kl3LEzQ5Zqs" 
         },
         { 
-          "name": "Curl Panca Inclinata 45°", "sets": "3", "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 75, 
+          "name": "Curl Panca Inclinata 45°", "target": "Bicipiti (Capo Lungo)", "sets": "3", "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 75, 
           "explanation": "Lascia le braccia a penzoloni verso il pavimento per pre-allungare il bicipite, poi fletti il gomito mantenendo il braccio fermo.", 
           "videoLink": "https://www.youtube.com/shorts/uCUaRFlA9vE" 
         },
         { 
-          "name": "Curl ai Cavi (Opt)", "sets": "2", "reps": "12-15", "rir": "0", "restSeconds": 75, 
+          "name": "Curl ai Cavi (Opt)", "target": "Bicipiti", "sets": "2", "reps": "12-15", "rir": "0", "restSeconds": 75, 
           "explanation": "Movimento fluido e continuo al cavo basso. Concentrati sulla strizzata finale (contrazione di picco) per massimizzare il pompaggio.", 
           "videoLink": "https://www.youtube.com/shorts/CrbTqNOlFgE" 
         },
         { 
-          "name": "Pushdown ai Cavi", "sets": "3", "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 75, 
+          "name": "Pushdown ai Cavi", "target": "Tricipiti", "sets": "3", "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 75, 
           "explanation": "Gomiti bloccati contro i fianchi. Estendi completamente le braccia verso il basso e stringi il tricipite.", 
           "videoLink": "https://www.youtube.com/shorts/1FoWlRS2Edc" 
         },
         { 
-          "name": "Stretching Upper", 
+          "name": "Stretching Upper", "target": "Flessibilità Upper Body",
           "explanation": "Shoulder stretch, Arm / chest stretch, Bicep stretch, Spine stretch, Neck stretch, Forearm stretch, Triceps stretch, Oblique stretch", 
           "videoLink": "https://www.youtube.com/watch?v=bgMNXt88RQ8" 
         }
@@ -67,61 +67,61 @@
       "name": "GIORNO Y",
       "exercises": [
         { 
-          "name": "Riscaldamento Lower", 
+          "name": "Riscaldamento Lower", "target": "Mobilità Lower Body",
           "explanation": "Air squats, side lunges, hip openers, leg swings", 
           "videoLink": "https://www.youtube.com/shorts/H2PKwYibPhY" 
         },
         { 
-          "name": "Leg Press 45°", "sets": "4", "reps": "6-8", "rir": "2", "restSeconds": 120, 
+          "name": "Leg Press 45°", "target": "Quadricipiti, Glutei", "sets": "4", "reps": "6-8", "rir": "2", "restSeconds": 120, 
           "explanation": "Piedi a metà pedana, larghezza spalle. Scendi il più possibile senza far staccare il bacino dal sedile.", 
           "videoLink": "https://www.youtube.com/shorts/EotSw18oR9w" 
         },
         { 
-          "name": "(Supported) Bulgarian Split Squat", "sets": "3", "reps": "8-10/gamba", "rir": "1-2", "restSeconds": 120, 
+          "name": "(Supported) Bulgarian Split Squat", "target": "Quadricipiti, Glutei", "sets": "3", "reps": "8-10/gamba", "rir": "1-2", "restSeconds": 120, 
           "explanation": "Usa un manubrio solo. Con la mano libera tieniti a un palo o panca per azzerare la necessità di equilibrio e caricare di più.", 
           "videoLink": "https://www.youtube.com/shorts/or1frhkjBDc" 
         },
         { 
-          "name": "Leg Extension", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
+          "name": "Leg Extension", "target": "Quadricipiti", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
           "explanation": "Tirati forte verso il sedile con le maniglie. Trattieni la fase di discesa e spingi forte in salita.", 
           "videoLink": "https://www.youtube.com/shorts/uM86QE59Tgc" 
         },
         { 
-          "name": "Leg Curl Sdraiato", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
+          "name": "Leg Curl Sdraiato", "target": "Femorali (Ischiocrurali)", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
           "explanation": "Tieni il bacino schiacciato contro la panca per non usare la zona lombare, contrai forte i femorali.", 
           "videoLink": "https://www.youtube.com/shorts/lGNeJsdqJwg" 
         },
         { 
-          "name": "Standing Calf Raise", "sets": "4", "reps": "12-15", "rir": "0-1", "restSeconds": 60, 
+          "name": "Standing Calf Raise", "target": "Polpacci (Gastrocnemio)", "sets": "4", "reps": "12-15", "rir": "0-1", "restSeconds": 60, 
           "explanation": "Gambe tese ma non iperestese per isolare il gastrocnemio. Scendi fino a sentire stretching completo, fai 1 sec di pausa e sali.", 
           "videoLink": "https://www.youtube.com/shorts/wlqTemUXPXY" 
         },
         { 
-          "name": "Adductor Machine", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
+          "name": "Adductor Machine", "target": "Adduttori", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
           "explanation": "Apri al massimo consentito dalla tua mobilità. Movimento controllato, strizza l'interno coscia in chiusura.", 
           "videoLink": "https://www.youtube.com/shorts/fwpMYCWdUNY" 
         },
         { 
-          "name": "Bench Reverse Crunch", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
+          "name": "Bench Reverse Crunch", "target": "Addominali", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
           "explanation": "Afferra la panca dietro la testa. Porta le ginocchia al petto e solleva leggermente il bacino spingendo verso l'alto.", 
           "videoLink": "https://www.youtube.com/shorts/KJ-2XT9Uu-E" 
         },
         { 
-          "name": "Crunch con disco / Cable Crunch", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
+          "name": "Crunch con disco / Cable Crunch", "target": "Addominali (Retto dell'Addome)", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
           "explanation": "Crunch con disco: Tieni un disco dietro la nuca. Fletti la colonna vertebrale strizzando forte l'addome (non tirare il collo).", 
           "videoLink": "https://www.instagram.com/p/DcC30sZhoKh/",
           "explanation2": "Cable Crunch: In ginocchio al cavo alto. Arrotola la schiena portando i gomiti verso le ginocchia usando solo l'addome.",
           "videoLink2": "https://www.youtube.com/shorts/K2m0jj6RfYg"
         },
         { 
-          "name": "Russian Twist / Pallof Press", "sets": "3", "reps": "12-15/lato", "rir": "1", "restSeconds": 60, 
+          "name": "Russian Twist / Pallof Press", "target": "Addominali (Obliqui), Core", "sets": "3", "reps": "12-15/lato", "rir": "1", "restSeconds": 60, 
           "explanation": "Russian Twist: Busto inclinato a 45°. Ruota le spalle (non solo le braccia) portando il peso da un lato all'altro.", 
           "videoLink": "https://www.youtube.com/shorts/aRUMRbl7KS4",
           "explanation2": "Pallof Press: In piedi di fianco al cavo. Spingi la maniglia in avanti (braccia tese) e resisti alla trazione laterale.",
           "videoLink2": "https://www.youtube.com/shorts/4Q8B14FfP7A"
         },
         { 
-          "name": "Stretching Lower", 
+          "name": "Stretching Lower", "target": "Flessibilità Lower Body",
           "explanation": "Ricorda anche lo stretching degli addominali", 
           "videoLink": "https://www.youtube.com/shorts/b8O0u9qnRS4" 
         }
@@ -132,64 +132,64 @@
       "name": "GIORNO Z",
       "exercises": [
         { 
-          "name": "Riscaldamento Upper", 
+          "name": "Riscaldamento Upper", "target": "Mobilità Upper Body",
           "explanation": "Horizontal arm swings, vertical arm swings, arm crossovers, full arm swing, trunk rotations, banded dislocations, banded pull aparts, banded external rotation, wall slides", 
           "videoLink": "https://www.youtube.com/shorts/Ff7MWn85wEw" 
         },
         { 
-          "name": "Lat Machine / Trazioni", "sets": "3", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
+          "name": "Lat Machine / Trazioni", "target": "Gran Dorsale, Bicipiti", "sets": "3", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
           "explanation": "Lat Machine: Petto in fuori, tira la sbarra verso la parte alta del petto portando i gomiti dritti verso il basso.", 
           "videoLink": "https://www.youtube.com/shorts/lmatGLlm1qsy",
           "explanation2": "Trazioni: Appeso alla sbarra, deprimi le scapole e tirati su fino a superare la sbarra col mento senza slanci.",
           "videoLink2": "https://www.youtube.com/shorts/ym1V5H35IpA"
         },
         { 
-          "name": "Shoulder Press", "sets": "3", "reps": "8-10", "rir": "2", "restSeconds": 120, 
+          "name": "Shoulder Press", "target": "Deltoidi Anteriori e Laterali, Tricipiti", "sets": "3", "reps": "8-10", "rir": "2", "restSeconds": 120, 
           "explanation": "Spingi verticalmente tenendo i gomiti leggermente chiusi in avanti (piano scapolare) per proteggere le articolazioni.", 
           "videoLink": "https://www.youtube.com/shorts/6v4nrRVySj0" 
         },
         { 
-          "name": "T-Bar Row", "sets": "4", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
+          "name": "T-Bar Row", "target": "Dorso, Bicipiti", "sets": "4", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
           "explanation": "Petto ben incollato al supporto per salvare la lombare. Tira col dorso permettendo un leggero allungamento delle scapole in discesa.", 
           "videoLink": "https://www.youtube.com/shorts/36sT4np_G1E" 
         },
         { 
-          "name": "Croci ai manubri", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
+          "name": "Croci ai manubri", "target": "Pettorali", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
           "explanation": "Braccia leggermente flesse. Scendi con un arco ampio per massimizzare l'allungamento del petto, ma fermati quando i gomiti sono in linea con le spalle per non sforzarle. Risali stringendo i pettorali come per abbracciare un grosso albero.", 
           "videoLink": "https://www.youtube.com/shorts/rk8YayRoTRQ" 
         },
         { 
-          "name": "Alzate Laterali Cavi", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
+          "name": "Alzate Laterali Cavi", "target": "Deltoidi Laterali", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
           "explanation": "Il cavo passa dietro o davanti al corpo. Tensione costante dal basso verso l'alto senza usare lo slancio.", 
           "videoLink": "https://www.youtube.com/shorts/lMJUXEvcMkQ" 
         },
         { 
-          "name": "Rear Delt ai Cavi", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
+          "name": "Rear Delt ai Cavi", "target": "Deltoidi Posteriori", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
           "explanation": "Cavi incrociati. Non addurre (stringere) le scapole; tieni la schiena fissa e muovi solo le braccia all'indietro per isolare il deltoide posteriore.", 
           "videoLink": "https://www.youtube.com/shorts/FeERX9UwspY" 
         },
         { 
-          "name": "Chest Supported Y-Raise", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 60, 
+          "name": "Chest Supported Y-Raise", "target": "Trapezi Inferiori, Deltoidi Posteriori", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 60, 
           "explanation": "Petto su panca inclinata, pesi leggerissimi. Blocca le scapole in basso e solleva a formare una Y per i trapezi inferiori.", 
           "videoLink": "https://www.youtube.com/watch?v=nvGTvUiaEOs" 
         },
         { 
-          "name": "Spider Curl Manubri", "sets": "3", "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 75, 
+          "name": "Spider Curl Manubri", "target": "Bicipiti (Capo Breve)", "sets": "3", "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 75, 
           "explanation": "Pancia appoggiata su panca inclinata a 45° e braccia a piombo perpendicolari al pavimento. Fletti le braccia mantenendo i gomiti fermi, strizza forte il picco del bicipite per 1 secondo in cima ed esegui una discesa lenta e controllata.", 
           "videoLink": "https://www.youtube.com/shorts/ivS3G35bapw" 
         },
         { 
-          "name": "(Seated) Hammer Curl", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
+          "name": "(Seated) Hammer Curl", "target": "Brachiale, Brachioradiale", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
           "explanation": "Seduto con schiena dritta o appoggiata a 90° (oppure con gomito vincolato all'interno coscia). Presa neutra a martello con pollici verso l'alto: fletti l'avambraccio senza oscillare con il busto, contrai forte il brachiale in cima e controlla la fase eccentrica.", 
           "videoLink": "https://www.youtube.com/shorts/Z7gLnOCO89c" 
         },
         { 
-          "name": "(Seated) Overhead Tricep Ext", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
+          "name": "(Seated) Overhead Tricep Ext", "target": "Tricipiti (Capo Lungo)", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
           "explanation": "Seduto su panca (60°) dando le spalle al cavo basso. Allunga totalmente i tricipiti dietro la nuca e poi estendi verso l'alto.", 
           "videoLink": "https://www.youtube.com/shorts/9Ark9S11uXw" 
         },
         { 
-          "name": "Stretching Upper", 
+          "name": "Stretching Upper", "target": "Flessibilità Upper Body",
           "explanation": "Shoulder stretch, Arm / chest stretch, Bicep stretch, Spine stretch, Neck stretch, Forearm stretch, Triceps stretch, Oblique stretch", 
           "videoLink": "https://www.youtube.com/watch?v=bgMNXt88RQ8" 
         }
@@ -200,56 +200,56 @@
       "name": "GIORNO A",
       "exercises": [
         { 
-          "name": "Riscaldamento Lower", 
+          "name": "Riscaldamento Lower", "target": "Mobilità Lower Body",
           "explanation": "Air squats, side lunges, hip openers, leg swings", 
           "videoLink": "https://www.youtube.com/shorts/H2PKwYibPhY" 
         },
         { 
-          "name": "Romanian Deadlift (RDL)", "sets": "4", "reps": "8-10", "rir": "2", "restSeconds": 120, 
+          "name": "Romanian Deadlift (RDL)", "target": "Femorali, Glutei, Lombari", "sets": "4", "reps": "8-10", "rir": "2", "restSeconds": 120, 
           "explanation": "Ginocchia sbloccate ma fisse, spingi forte il bacino all'indietro fino a sentire tirare i femorali. Schiena rigorosamente dritta.", 
           "videoLink": "https://www.youtube.com/shorts/hu3jRvTc_po" 
         },
         { 
-          "name": "Leg Press Piedi Alti", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 120, 
+          "name": "Leg Press Piedi Alti", "target": "Glutei, Femorali", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 120, 
           "explanation": "Posiziona i piedi alti sulla pedana per spostare il focus sui femorali e sui glutei. Non alzare il bacino a fine discesa.", 
           "videoLink": "https://www.youtube.com/shorts/BnacvXdaxq8" 
         },
         { 
-          "name": "Leg Curl Sdraiato", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
+          "name": "Leg Curl Sdraiato", "target": "Femorali (Ischiocrurali)", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
           "explanation": "Movimento controllato in fase eccentrica (discesa). Strizza forte il femorale in chiusura.", 
           "videoLink": "https://www.youtube.com/shorts/lGNeJsdqJwg" 
         },
         { 
-          "name": "Seated Calf Raise", "sets": "3-4", "reps": "12-15", "rir": "0-1", "restSeconds": 60, 
+          "name": "Seated Calf Raise", "target": "Polpacci (Soleo)", "sets": "3-4", "reps": "12-15", "rir": "0-1", "restSeconds": 60, 
           "explanation": "Macchina da seduto (ginocchia a 90°) per isolare il muscolo Soleo. Pausa di 1-2 secondi in massimo allungamento in basso.", 
           "videoLink": "https://www.youtube.com/shorts/S2yhz3klwdU" 
         },
         { 
-          "name": "Bench Reverse Crunch", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
+          "name": "Bench Reverse Crunch", "target": "Addominali", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
           "explanation": "Isolamento profondo del basso addome. Afferra la panca dietro la testa, solleva il bacino arrotolandolo verso l'alto.", 
           "videoLink": "https://www.youtube.com/shorts/KJ-2XT9Uu-E" 
         },
         { 
-          "name": "Crunch con disco / Cable Crunch", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
+          "name": "Crunch con disco / Cable Crunch", "target": "Addominali (Retto dell'Addome)", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
           "explanation": "Crunch con disco: Tieni un disco dietro la nuca. Fletti la colonna vertebrale strizzando forte l'addome (non tirare il collo).", 
           "videoLink": "https://www.instagram.com/p/DcC30sZhoKh/",
           "explanation2": "Cable Crunch: In ginocchio al cavo alto. Arrotola la schiena portando i gomiti verso le ginocchia usando solo l'addome.",
           "videoLink2": "https://www.youtube.com/shorts/K2m0jj6RfYg"
         },
         { 
-          "name": "Russian Twist / Pallof Press", "sets": "3", "reps": "12-15/lato", "rir": "1", "restSeconds": 60, 
+          "name": "Russian Twist / Pallof Press", "target": "Addominali (Obliqui), Core", "sets": "3", "reps": "12-15/lato", "rir": "1", "restSeconds": 60, 
           "explanation": "Russian Twist: Busto inclinato a 45°. Ruota le spalle (non solo le braccia) portando il peso da un lato all'altro.", 
           "videoLink": "https://www.youtube.com/shorts/aRUMRbl7KS4",
           "explanation2": "Pallof Press: In piedi di fianco al cavo. Spingi la maniglia in avanti (braccia tese) e resisti alla trazione laterale.",
           "videoLink2": "https://www.youtube.com/shorts/4Q8B14FfP7A"
         },
         { 
-          "name": "Y-Hyperextension", "sets": "3", "reps": "12-15", "rir": "1-2", "restSeconds": 60, 
+          "name": "Y-Hyperextension", "target": "Lombari, Glutei, Trapezi Inferiori", "sets": "3", "reps": "12-15", "rir": "1-2", "restSeconds": 60, 
           "explanation": "Panca per iperestensioni. Sollevati usando i lombari e contemporaneamente alza le braccia a Y per attivare i trapezi inferiori.", 
           "videoLink": "https://www.youtube.com/shorts/8rXdAAwm8Rs" 
         },
         { 
-          "name": "Stretching Lower", 
+          "name": "Stretching Lower", "target": "Flessibilità Lower Body",
           "explanation": "Ricorda anche lo stretching degli addominali", 
           "videoLink": "https://www.youtube.com/shorts/b8O0u9qnRS4" 
         }
