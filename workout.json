@@ -77,11 +77,6 @@
           "videoLink": "https://www.youtube.com/shorts/EotSw18oR9w" 
         },
         { 
-          "name": "(Supported) Bulgarian Split Squat", "target": "Quadricipiti, Glutei", "sets": "3", "reps": "8-10/gamba", "rir": "1-2", "restSeconds": 120, 
-          "explanation": "Usa un manubrio solo. Con la mano libera tieniti a un palo o panca per azzerare la necessità di equilibrio e caricare di più.", 
-          "videoLink": "https://www.youtube.com/shorts/or1frhkjBDc" 
-        },
-        { 
           "name": "Leg Extension", "target": "Quadricipiti", "sets": "3", "reps": "12-15", "rir": "1 (ultima a 0)", "restSeconds": 75, 
           "explanation": "Tirati forte verso il sedile con le maniglie. Trattieni la fase di discesa e spingi forte in salita.", 
           "videoLink": "https://www.youtube.com/shorts/uM86QE59Tgc" 
@@ -210,9 +205,9 @@
           "videoLink": "https://www.youtube.com/shorts/hu3jRvTc_po" 
         },
         { 
-          "name": "Leg Press Piedi Alti", "target": "Glutei, Femorali", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 120, 
-          "explanation": "Posiziona i piedi alti sulla pedana per spostare il focus sui femorali e sui glutei. Non alzare il bacino a fine discesa.", 
-          "videoLink": "https://www.youtube.com/shorts/BnacvXdaxq8" 
+          "name": "(Supported) Bulgarian Split Squat", "target": "Quadricipiti, Glutei", "sets": "3", "reps": "8-10/gamba", "rir": "1-2", "restSeconds": 120, 
+          "explanation": "Usa un manubrio solo. Con la mano libera tieniti a un palo o panca per azzerare la necessità di equilibrio e caricare di più.", 
+          "videoLink": "https://www.youtube.com/shorts/or1frhkjBDc" 
         },
         { 
           "name": "Leg Curl Sdraiato", "target": "Femorali (Ischiocrurali)", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
@@ -223,6 +218,13 @@
           "name": "Seated Calf Raise", "target": "Polpacci (Soleo)", "sets": "3-4", "reps": "12-15", "rir": "0-1", "restSeconds": 60, 
           "explanation": "Macchina da seduto (ginocchia a 90°) per isolare il muscolo Soleo. Pausa di 1-2 secondi in massimo allungamento in basso.", 
           "videoLink": "https://www.youtube.com/shorts/S2yhz3klwdU" 
+        },
+        { 
+          "name": "Hyperextension / Hip Thrust", "target": "Glutei, Lombari, Femorali", "sets": "3", "reps": "12-15", "rir": "1-2", "restSeconds": 90, 
+          "explanation": "Hyperextension: Panca a 45°. Arrotonda leggermente la parte alta della schiena e fletti il busto in avanti, poi risali contraendo forte i glutei senza inarcare troppo la zona lombare.", 
+          "videoLink": "https://www.youtube.com/shorts/8rXdAAwm8Rs",
+          "explanation2": "Hip Thrust: Appoggia le scapole su una panca con un bilanciere o peso sul bacino. Spingi forte dai talloni e contrai al massimo i glutei in chiusura.",
+          "videoLink2": "https://www.youtube.com/shorts/Zp26q4BY5HE"
         },
         { 
           "name": "Bench Reverse Crunch", "target": "Addominali", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
@@ -242,11 +244,6 @@
           "videoLink": "https://www.youtube.com/shorts/aRUMRbl7KS4",
           "explanation2": "Pallof Press: In piedi di fianco al cavo. Spingi la maniglia in avanti (braccia tese) e resisti alla trazione laterale.",
           "videoLink2": "https://www.youtube.com/shorts/4Q8B14FfP7A"
-        },
-        { 
-          "name": "Y-Hyperextension", "target": "Lombari, Glutei, Trapezi Inferiori", "sets": "3", "reps": "12-15", "rir": "1-2", "restSeconds": 60, 
-          "explanation": "Panca per iperestensioni. Sollevati usando i lombari e contemporaneamente alza le braccia a Y per attivare i trapezi inferiori.", 
-          "videoLink": "https://www.youtube.com/shorts/8rXdAAwm8Rs" 
         },
         { 
           "name": "Stretching Lower", "target": "Flessibilità Lower Body",
