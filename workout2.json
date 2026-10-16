@@ -1,0 +1,193 @@
+{
+    "programName": "Scheda Ipertrofia 3 Giorni (Judo Compatibile)",
+    "days": [
+      {
+        "id": "1",
+        "name": "PUSH & QUADS",
+        "exercises": [
+          { 
+            "name": "Riscaldamento Ibrido (Upper + Lower)", "target": "Mobilità e Avvicinamento",
+            "explanation": "2 min Lower: air squats, affondi laterali, oscillazioni gambe. 2 min Upper: slanci braccia, band pull aparts. A seguire: 2-3 serie di avvicinamento (Ramping) progressivo solo sulla Leg Press.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/Ff7MWn85wEw" 
+          },
+          { 
+            "name": "Leg Press 45°", "target": "Quadricipiti, Glutei", "sets": "3", "reps": "6-8", "rir": "2", "restSeconds": 120, 
+            "explanation": "Piedi a metà pedana, larghezza spalle. Scendi il più possibile senza far staccare il bacino dal sedile.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/EotSw18oR9w" 
+          },
+          { 
+            "name": "Leg Extension", "target": "Quadricipiti", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
+            "explanation": "Tirati forte verso il sedile con le maniglie. Trattieni la fase di discesa e spingi forte in salita.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/uM86QE59Tgc" 
+          },
+          { 
+            "name": "Chest Press", "target": "Pettorali, Deltoidi Anteriori, Tricipiti", "sets": "3", "reps": "6-8", "rir": "2", "restSeconds": 120, 
+            "explanation": "Spalle depresse e scapole addotte. Movimento controllato, massima estensione del petto in fase eccentrica.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/Qu7-ceCvq7w" 
+          },
+          { 
+            "name": "Panca Inclinata Manubri 30°", "target": "Pettorali (Fasci Clavicolari)", "sets": "3", "reps": "8-10", "rir": "1", "restSeconds": 120, 
+            "explanation": "Panca a 30°. Scendi profondo per allungare il petto, non far sbattere i manubri in chiusura per mantenere la tensione.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/8fXfwG4ftaQ" 
+          },
+          { 
+            "name": "Shoulder Press", "target": "Deltoidi Anteriori e Laterali, Tricipiti", "sets": "3", "reps": "8-10", "rir": "2", "restSeconds": 120, 
+            "explanation": "Spingi verticalmente tenendo i gomiti leggermente chiusi in avanti (piano scapolare) per proteggere le articolazioni.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/6v4nrRVySj0" 
+          },
+          { 
+            "name": "Lateral Raises (Manubri o Cavi)", "target": "Deltoidi Laterali", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
+            "explanation": "Solleva lateralmente tenendo la tensione. Se usi i cavi, il cavo passa dietro o davanti al corpo con tensione costante.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/lMJUXEvcMkQ" 
+          },
+          { 
+            "name": "Pushdown ai Cavi (Superset con Polpacci)", "target": "Tricipiti", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 0, 
+            "explanation": "Esegui in superserie con lo Standing Calf Raise (no pausa tra i due). Gomiti bloccati contro i fianchi. Estendi completamente le braccia verso il basso e stringi il tricipite.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/1FoWlRS2Edc" 
+          },
+          { 
+            "name": "Standing Calf Raise", "target": "Polpacci (Gastrocnemio)", "sets": "3", "reps": "12-15", "rir": "0-1", "restSeconds": 75, 
+            "explanation": "Gambe tese ma non iperestese. Scendi fino a sentire stretching completo, fai 2 sec di pausa e sali.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/wlqTemUXPXY" 
+          },
+          { 
+            "name": "Bench Reverse Crunch (con cavigliere)", "target": "Addominali (Retto basso)", "sets": "4", "reps": "10-12", "rir": "1", "restSeconds": 60, 
+            "explanation": "Afferra la panca dietro la testa. Porta le ginocchia al petto e solleva leggermente il bacino spingendo verso l'alto.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/KJ-2XT9Uu-E" 
+          },
+          { 
+            "name": "Stretching e Defaticamento", "target": "Flessibilità e Recupero",
+            "explanation": "Mantieni 4 posizioni per 30-45 sec: 1. Appeso alla sbarra (dorso). 2. Mano a muro ruotando il busto (petto/bicipiti). 3. Affondo a terra (flessori anca/quad). 4. Figura 4 o allungamento a gamba tesa (glutei/femorali).", 
+            "videoLink": "" 
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "HYBRID",
+        "exercises": [
+          { 
+            "name": "Riscaldamento Ibrido (Upper + Lower)", "target": "Mobilità e Avvicinamento",
+            "explanation": "2 min Lower: air squats, affondi laterali, oscillazioni gambe. 2 min Upper: slanci braccia, band pull aparts. A seguire: 2-3 serie di avvicinamento (Ramping) progressivo solo sui Bulgarian Split Squat.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/H2PKwYibPhY" 
+          },
+          { 
+            "name": "Supported Bulgarian Split Squat", "target": "Quadricipiti, Glutei", "sets": "3", "reps": "8-10/gamba", "rir": "1-2", "restSeconds": 120, 
+            "explanation": "Usa un manubrio solo. Con la mano libera tieniti a un palo o panca per azzerare la necessità di equilibrio e caricare di più.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/or1frhkjBDc" 
+          },
+          { 
+            "name": "Leg Curl Sdraiato", "target": "Femorali (Ischiocrurali)", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
+            "explanation": "Movimento controllato in fase eccentrica (discesa). Strizza forte il femorale in chiusura.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/lGNeJsdqJwg" 
+          },
+          { 
+            "name": "Lat Machine Presa Neutra", "target": "Gran Dorsale, Bicipiti", "sets": "3-4", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
+            "explanation": "Petto in fuori, tira la sbarra verso la parte alta del petto portando i gomiti dritti verso il basso.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/QuSqYj7tFbI" 
+          },
+          { 
+            "name": "Cable Rows (Presa prona/larga)", "target": "Alta Schiena (Romboidi, Trapezi), Bicipiti", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 75, 
+            "explanation": "Usa una sbarra dritta con presa prona (palmi in giù). Tieni i gomiti leggermente larghi per spostare il focus sull'alta schiena e i romboidi.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/qD1WZ5pSuvk"
+          },
+          { 
+            "name": "Croci (Cavi o Manubri)", "target": "Pettorali", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
+            "explanation": "Braccia leggermente flesse. Scendi con un arco ampio per massimizzare l'allungamento del petto, ma fermati quando i gomiti sono in linea con le spalle.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/rk8YayRoTRQ" 
+          },
+          { 
+            "name": "Alzate Laterali al Cavo Monobraccio", "target": "Deltoidi Laterali", "sets": "3", "reps": "12-15", "rir": "0", "restSeconds": 75, 
+            "explanation": "Lavoro a cedimento per la larghezza delle spalle. Tensione costante dal basso verso l'alto senza usare lo slancio.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/lMJUXEvcMkQ" 
+          },
+          { 
+            "name": "Overhead Tricep Extension", "target": "Tricipiti (Capo Lungo)", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
+            "explanation": "Allunga totalmente i tricipiti dietro la nuca e poi estendi verso l'alto.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/9Ark9S11uXw" 
+          },
+          { 
+            "name": "Curl ai Cavi", "target": "Bicipiti", "sets": "3", "reps": "12-15", "rir": "0", "restSeconds": 75, 
+            "explanation": "Movimento fluido e continuo al cavo basso. Concentrati sulla strizzata finale (contrazione di picco) per massimizzare il pompaggio.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/CrbTqNOlFgE" 
+          },
+          { 
+            "name": "Seated Calf Raise", "target": "Polpacci (Soleo)", "sets": "2", "reps": "15", "rir": "0-1", "restSeconds": 60, 
+            "explanation": "Macchina da seduto (ginocchia a 90°) per isolare il muscolo Soleo. Pausa di 1-2 secondi in massimo allungamento in basso.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/S2yhz3klwdU" 
+          },
+          { 
+            "name": "Crunch con disco o Cable Crunch", "target": "Addominali (Retto dell'Addome)", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 60, 
+            "explanation": "Crunch con disco: Tieni un disco dietro la nuca. Fletti la colonna strizzando forte l'addome. Cable: In ginocchio, porta i gomiti alle ginocchia.[cite: 1]", 
+            "videoLink": "https://www.instagram.com/p/DcC30sZhoKh/"
+          },
+          { 
+            "name": "Stretching e Defaticamento", "target": "Flessibilità e Recupero",
+            "explanation": "Mantieni 4 posizioni per 30-45 sec: 1. Appeso alla sbarra (dorso). 2. Mano a muro ruotando il busto (petto/bicipiti). 3. Affondo a terra (flessori anca/quad). 4. Figura 4 o allungamento a gamba tesa (glutei/femorali).", 
+            "videoLink": "" 
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "name": "PULL & BACK CHAIN",
+        "exercises": [
+          { 
+            "name": "Riscaldamento Ibrido (Upper + Lower)", "target": "Mobilità e Avvicinamento",
+            "explanation": "2 min Lower: air squats, affondi laterali, oscillazioni gambe. 2 min Upper: slanci braccia, band pull aparts. A seguire: 2-3 serie di avvicinamento (Ramping) progressivo solo sull'Hip Thrust.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/H2PKwYibPhY" 
+          },
+          { 
+            "name": "Hip Thrust", "target": "Glutei", "sets": "3", "reps": "10-12", "rir": "1-2", "restSeconds": 120, 
+            "explanation": "Appoggia le scapole su una panca con un bilanciere o peso sul bacino. Spingi forte dai talloni e contrai al massimo i glutei in chiusura.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/Zp26q4BY5HE"
+          },
+          { 
+            "name": "Panca Hyperextension a 45° (o RDL)", "target": "Glutei, Lombari, Femorali", "sets": "3-4", "reps": "12-15", "rir": "1-2", "restSeconds": 90, 
+            "explanation": "Hyperextension: Panca a 45°. Arrotonda leggermente la parte alta della schiena e fletti il busto in avanti, poi risali contraendo forte i glutei senza inarcare troppo la zona lombare. Usa le fasce (straps) se scegli l'RDL per non stancare la presa.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/8rXdAAwm8Rs"
+          },
+          { 
+            "name": "Side bends alla panca 45°", "target": "Addominali (Obliqui)", "sets": "4", "reps": "10-12/lato", "rir": "1", "restSeconds": 60, 
+            "explanation": "Rimani sulla panca per le hyperextension, mettiti di fianco e afferra un manubrio. Fletti lateralmente il busto per far lavorare gli obliqui e il quadrato dei lombi in allungamento.", 
+            "videoLink": "" 
+          },
+          { 
+            "name": "Lat Machine Sbarra Larga / Trazioni", "target": "Gran Dorsale, Bicipiti", "sets": "3", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
+            "explanation": "Lat Machine: Sbarra dritta e presa larga. Petto in fuori, tira verso la parte alta del petto isolando l'apertura dorsale.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/lmatGLlm1qsy"
+          },
+          { 
+            "name": "T-Bar Row", "target": "Gran Dorsale, Bicipiti", "sets": "4", "reps": "8-10", "rir": "1-2", "restSeconds": 120, 
+            "explanation": "Usa la presa a 45 gradi (maniglie parallele/neutre). Tieni i gomiti chiusi lungo i fianchi per massimizzare il lavoro sul Gran Dorsale in sicurezza.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/36sT4np_G1E" 
+          },
+          { 
+            "name": "Adductor Machine", "target": "Adduttori", "sets": "3", "reps": "12-15", "rir": "1", "restSeconds": 75, 
+            "explanation": "Apri al massimo consentito dalla tua mobilità. Movimento controllato, strizza l'interno coscia in chiusura.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/fwpMYCWdUNY" 
+          },
+          { 
+            "name": "Face Pull ai Cavi", "target": "Deltoidi Posteriori, Cuffia Rotatori", "sets": "3", "reps": "12-15", "rir": "1-2", "restSeconds": 75, 
+            "explanation": "Usa la corda al cavo alto. Tira verso il viso separando le mani e ruotando esternamente i polsi. Ottimo per la salute delle spalle.", 
+            "videoLink": "" 
+          },
+          { 
+            "name": "Curl Panca Inclinata 45°", "target": "Bicipiti (Capo Lungo)", "sets": "3", "reps": "10-12", "rir": "1 (ultima a 0)", "restSeconds": 75, 
+            "explanation": "Lascia le braccia a penzoloni verso il pavimento per pre-allungare il bicipite, poi fletti il gomito mantenendo il braccio fermo.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/uCUaRFlA9vE" 
+          },
+          { 
+            "name": "Seated Hammer Curl", "target": "Brachiale, Brachioradiale", "sets": "3", "reps": "10-12", "rir": "1", "restSeconds": 75, 
+            "explanation": "Seduto con schiena dritta. Presa neutra a martello con pollici verso l'alto: fletti l'avambraccio senza oscillare con il busto e controlla la discesa.[cite: 1]", 
+            "videoLink": "https://www.youtube.com/shorts/Z7gLnOCO89c" 
+          },
+          { 
+            "name": "Stretching e Defaticamento", "target": "Flessibilità e Recupero",
+            "explanation": "Mantieni 4 posizioni per 30-45 sec: 1. Appeso alla sbarra (dorso). 2. Mano a muro ruotando il busto (petto/bicipiti). 3. Affondo a terra (flessori anca/quad). 4. Figura 4 o allungamento a gamba tesa (glutei/femorali).", 
+            "videoLink": "" 
+          }
+        ]
+      }
+    ]
+  }
