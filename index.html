@@ -22,9 +22,30 @@
             padding: 20px;
             padding-top: 40px;
         }
-        h1 { text-align: center; margin-bottom: 30px; }
+        h1 { text-align: center; margin-bottom: 20px; }
         .hidden { display: none !important; }
         
+        /* Selettore Schede */
+        .workout-selector-container {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .workout-select {
+            background-color: var(--card-bg);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            max-width: 400px;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            text-align: center;
+        }
+
         /* Menu Giorni & Lista Esercizi */
         .day-card, .ex-list-card {
             background-color: var(--card-bg);
@@ -41,23 +62,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-left: 5px solid var(--techno-gold); /* Aggiornato al Giallo */
+            border-left: 5px solid var(--techno-gold);
         }
         .ex-list-card.completed {
             border-left: 5px solid var(--success);
             opacity: 0.6;
         }
         
-        /* FIX: Prevents text from breaking onto multiple lines */
         .ex-list-card > div:first-child {
-            flex: 1; /* Il testo prende lo spazio rimanente */
-            padding-right: 15px; /* Spazio per evitare collisioni col numero */
+            flex: 1; 
+            padding-right: 15px; 
         }
         .ex-status {
             font-weight: bold;
             color: var(--accent);
-            white-space: nowrap; /* Impedisce di andare a capo */
-            flex-shrink: 0; /* Impedisce al container del numero di rimpicciolirsi */
+            white-space: nowrap; 
+            flex-shrink: 0; 
         }
 
         .ex-list-card h3 { margin: 0 0 5px 0; font-size: 16px; }
@@ -153,7 +173,6 @@
             max-width: 300px;
         }
 
-        /* Nuovi stili per Spiegazioni e Video */
         .btn-video {
             display: inline-block;
             background-color: var(--techno-gold);
@@ -183,6 +202,18 @@
     <!-- Schermata Principale (Lista Schede) -->
     <div id="homeScreen">
         <h1>Le Mie Schede</h1>
+        
+        <!-- NUOVO: Selettore del file JSON della scheda -->
+        <div class="workout-selector-container">
+            <select id="workoutSelect" class="workout-select" onchange="changeWorkoutFile(this.value)">
+                <!-- Puoi aggiungere qui tutte le schede (file JSON) che crei -->
+                <option value="workout.json">Scheda Ipertrofia 4 Giorni</option>
+                <option value="workout2.json">Scheda 3 Giorni (Nuova)</option>
+                <!-- Aggiungi altri file così: <option value="workout3.json">Nome Scheda 3</option> -->
+            </select>
+        </div>
+
+        <h2 id="currentWorkoutName" style="text-align: center; color: var(--techno-gold); font-size: 16px;"></h2>
         <div id="daysList"></div>
         <button class="btn-export" onclick="exportData()">⬇ Esporta Dati Storico</button>
     </div>
@@ -207,7 +238,6 @@
             <h2 id="exName"></h2>
             <p id="exTarget" style="text-align: center; color: var(--techno-gold); margin-top: -20px; margin-bottom: 25px; font-size: 14px; font-weight: bold;"></p>
             
-            <!-- Inizio Sezione Spiegazioni e Video -->
             <div id="exExplanationContainer" class="hidden">
                 <p id="exExplanation" class="explanation-text"></p>
                 <a id="exVideoBtn" href="#" target="_blank" class="btn-video"> Guarda Video</a>
@@ -217,9 +247,7 @@
                 <p id="exExplanation2" class="explanation-text"></p>
                 <a id="exVideoBtn2" href="#" target="_blank" class="btn-video"> Guarda Video (Alternativa)</a>
             </div>
-            <!-- Fine Sezione Spiegazioni e Video -->
 
-            <!-- Zona Timer Attivo (es. per Plank) -->
             <div id="activeTimerArea" class="hidden action-area" style="margin-top:0; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #333;">
                 <p class="timer-text" id="activeTimerDisplay" style="color: var(--accent); font-size: 45px;">0:00</p>
                 <button class="btn-skip" onclick="startActiveTimer()">Avvia Esecuzione</button>
@@ -234,7 +262,6 @@
                 <span class="info-value" id="exRepsRir"></span>
             </div>
             
-            <!-- Input Pesi o Secondi -->
             <div class="info-row">
                 <span class="info-label" id="inputLabel">Carico (kg):</span>
                 <input type="number" id="exInput" class="custom-input" placeholder="0">
@@ -257,72 +284,114 @@
         let selectedDay = null;
         let currentExIndex = 0;
         let currentSet = 1;
+        let currentFile = 'workout.json'; // File di default
         
-        // Carica i progressi della sessione o crea un oggetto vuoto
         let sessionProgress = JSON.parse(localStorage.getItem('sessionProgress')) || {}; 
         let savedHistory = JSON.parse(localStorage.getItem('workoutHistory')) || {};
     
         let restInterval = null;
         let activeInterval = null;
     
-        // Salva lo stato corrente dell'app per evitare reset
+        // Salva lo stato includendo anche il file JSON attuale
         function saveAppState(screen) {
             const state = {
                 screen: screen,
                 dayId: selectedDay ? selectedDay.id : null,
                 exIndex: currentExIndex,
+                file: currentFile,
                 timestamp: Date.now()
             };
             localStorage.setItem('appState', JSON.stringify(state));
             localStorage.setItem('sessionProgress', JSON.stringify(sessionProgress));
         }
     
-        // Ripristina lo stato al caricamento
+        // Ripristina lo stato
         function restoreAppState() {
             const state = JSON.parse(localStorage.getItem('appState'));
-            if (!state) return;
+            if (!state) {
+                loadWorkoutFile(currentFile);
+                return;
+            }
             
             // Se la sessione è più vecchia di 12 ore, cancellala
             if (Date.now() - state.timestamp > 12 * 60 * 60 * 1000) {
                 localStorage.removeItem('appState');
                 localStorage.removeItem('sessionProgress');
                 sessionProgress = {};
+                loadWorkoutFile(currentFile);
                 return;
             }
-    
-            if (state.screen === 'overview' && state.dayId) {
-                const day = workoutData.days.find(d => d.id === state.dayId);
-                if (day) openDayOverview(day, false);
-            } else if (state.screen === 'workout' && state.dayId) {
-                const day = workoutData.days.find(d => d.id === state.dayId);
-                if (day) {
-                    selectedDay = day;
-                    currentExIndex = state.exIndex || 0;
-                    if (!sessionProgress[day.id]) {
-                        sessionProgress[day.id] = {};
-                        day.exercises.forEach((ex, i) => sessionProgress[day.id][i] = 0);
-                    }
-                    currentSet = sessionProgress[day.id][currentExIndex] + 1;
-                    
-                    document.getElementById('homeScreen').classList.add('hidden');
-                    document.getElementById('workoutScreen').classList.remove('hidden');
-                    updateWorkoutUI();
-                }
+
+            // Ripristina il file corretto
+            if (state.file) {
+                currentFile = state.file;
+                document.getElementById('workoutSelect').value = currentFile;
             }
+    
+            // Carica il file, poi ripristina la schermata
+            loadWorkoutFile(currentFile, () => {
+                if (state.screen === 'overview' && state.dayId) {
+                    const day = workoutData.days.find(d => d.id === state.dayId);
+                    if (day) openDayOverview(day, false);
+                } else if (state.screen === 'workout' && state.dayId) {
+                    const day = workoutData.days.find(d => d.id === state.dayId);
+                    if (day) {
+                        selectedDay = day;
+                        currentExIndex = state.exIndex || 0;
+                        if (!sessionProgress[day.id]) {
+                            sessionProgress[day.id] = {};
+                            day.exercises.forEach((ex, i) => sessionProgress[day.id][i] = 0);
+                        }
+                        currentSet = sessionProgress[day.id][currentExIndex] + 1;
+                        
+                        document.getElementById('homeScreen').classList.add('hidden');
+                        document.getElementById('workoutScreen').classList.remove('hidden');
+                        updateWorkoutUI();
+                    }
+                }
+            });
         }
     
-        fetch('workout.json')
-            .then(response => response.json())
-            .then(data => {
-                workoutData = data;
-                renderHome();
-                restoreAppState();
-            })
-            .catch(error => alert("Errore nel caricamento di workout.json"));
+        // Funzione per caricare dinamicamente un file JSON
+        function loadWorkoutFile(filename, callback = null) {
+            fetch(filename)
+                .then(response => {
+                    if (!response.ok) throw new Error("File non trovato");
+                    return response.json();
+                })
+                .then(data => {
+                    workoutData = data;
+                    document.getElementById('currentWorkoutName').innerText = data.programName || '';
+                    renderHome();
+                    if (callback) callback();
+                })
+                .catch(error => {
+                    alert("Errore nel caricamento di " + filename + ". Assicurati che il file esista nella stessa cartella.");
+                    console.error(error);
+                });
+        }
+
+        // Chiamata quando cambi selezione nel menu a tendina
+        function changeWorkoutFile(filename) {
+            currentFile = filename;
+            // Pulisce lo stato della sessione attiva (altrimenti potresti avere un ID giorno sfalsato)
+            localStorage.removeItem('appState');
+            localStorage.removeItem('sessionProgress');
+            sessionProgress = {}; 
+            
+            loadWorkoutFile(filename, () => {
+                saveAppState('home');
+            });
+        }
+    
+        // Avvio iniziale
+        restoreAppState();
     
         function renderHome() {
             const list = document.getElementById('daysList');
             list.innerHTML = '';
+            if(!workoutData || !workoutData.days) return;
+            
             workoutData.days.forEach(day => {
                 const card = document.createElement('div');
                 card.className = 'day-card';
@@ -343,241 +412,4 @@
     
         function openDayOverview(day, save = true) {
             selectedDay = day;
-            document.getElementById('dayTitle').innerText = day.name.split(' ')[0] + " " + day.name.split(' ')[1];
-            
-            if (!sessionProgress[day.id]) {
-                sessionProgress[day.id] = {};
-                day.exercises.forEach((ex, i) => sessionProgress[day.id][i] = 0);
-            }
-    
-            renderExerciseList();
-            document.getElementById('homeScreen').classList.add('hidden');
-            document.getElementById('overviewScreen').classList.remove('hidden');
-            if(save) saveAppState('overview');
-        }
-    
-        function renderExerciseList() {
-            const list = document.getElementById('exerciseList');
-            list.innerHTML = '';
-            
-            selectedDay.exercises.forEach((ex, i) => {
-                const totalSets = ex.sets ? ex.sets : 1; 
-                const setsDone = sessionProgress[selectedDay.id][i] || 0;
-                const isCompleted = setsDone >= totalSets;
-                
-                const card = document.createElement('div');
-                card.className = `ex-list-card ${isCompleted ? 'completed' : ''}`;
-                card.onclick = () => startExercise(i);
-                
-                card.innerHTML = `
-                    <div>
-                        <h3>${ex.name}</h3>
-                        <p>${ex.reps ? ex.reps + ' | RIR: ' + ex.rir : 'Esercizio libero'}</p>
-                        <p style="color: var(--techno-gold); font-size: 11px; margin-top: 3px;"> ${ex.target || 'Riscaldamento / Mobilità'}</p>
-                    </div>
-                    <div class="ex-status">${setsDone} / ${totalSets}</div>
-                `;
-                list.appendChild(card);
-            });
-        }
-    
-        function goToOverview() {
-            clearInterval(restInterval);
-            clearInterval(activeInterval);
-            document.getElementById('workoutScreen').classList.add('hidden');
-            renderExerciseList();
-            document.getElementById('overviewScreen').classList.remove('hidden');
-            saveAppState('overview');
-        }
-    
-        function startExercise(index) {
-            currentExIndex = index;
-            const ex = selectedDay.exercises[currentExIndex];
-            const totalSets = ex.sets ? ex.sets : 1;
-            const setsDone = sessionProgress[selectedDay.id][currentExIndex];
-            
-            if (setsDone >= totalSets) {
-                if (!confirm("Hai già completato i set per questo esercizio. Vuoi ricominciare da capo?")) return;
-                sessionProgress[selectedDay.id][currentExIndex] = 0;
-            }
-            
-            currentSet = sessionProgress[selectedDay.id][currentExIndex] + 1;
-            
-            document.getElementById('overviewScreen').classList.add('hidden');
-            document.getElementById('workoutScreen').classList.remove('hidden');
-            updateWorkoutUI();
-            saveAppState('workout');
-        }
-    
-        function isTimedExercise(ex) {
-            if(!ex.reps || !ex.rir) return false;
-            const reps = ex.reps.toLowerCase();
-            const rir = ex.rir.toLowerCase();
-            return reps.includes('s') || rir.includes('isometrica');
-        }
-    
-        function updateWorkoutUI() {
-            const ex = selectedDay.exercises[currentExIndex];
-            const totalSets = ex.sets ? ex.sets : 1;
-            
-            document.getElementById('progressText').innerText = `Es. ${currentExIndex + 1} di ${selectedDay.exercises.length}`;
-            document.getElementById('exName').innerText = ex.name;
-            document.getElementById('exTarget').innerText = ex.target ? `Allena: ${ex.target}` : '';
-            document.getElementById('exSet').innerText = `${currentSet} / ${totalSets}`;
-            document.getElementById('exRepsRir').innerText = ex.reps ? `${ex.reps} | RIR: ${ex.rir}` : '-';
-            
-            if (ex.explanation) {
-                document.getElementById('exExplanationContainer').classList.remove('hidden');
-                document.getElementById('exExplanation').innerText = ex.explanation;
-                if (ex.videoLink) {
-                    document.getElementById('exVideoBtn').href = ex.videoLink;
-                    document.getElementById('exVideoBtn').style.display = 'inline-block';
-                } else {
-                    document.getElementById('exVideoBtn').style.display = 'none';
-                }
-            } else {
-                document.getElementById('exExplanationContainer').classList.add('hidden');
-            }
-    
-            if (ex.explanation2) {
-                document.getElementById('exExplanationContainer2').classList.remove('hidden');
-                document.getElementById('exExplanation2').innerText = ex.explanation2;
-                if (ex.videoLink2) {
-                    document.getElementById('exVideoBtn2').href = ex.videoLink2;
-                    document.getElementById('exVideoBtn2').style.display = 'inline-block';
-                } else {
-                    document.getElementById('exVideoBtn2').style.display = 'none';
-                }
-            } else {
-                document.getElementById('exExplanationContainer2').classList.add('hidden');
-            }
-    
-            const inputField = document.getElementById('exInput');
-            if (isTimedExercise(ex)) {
-                document.getElementById('inputLabel').innerText = "Secondi Eseguiti:";
-                document.getElementById('activeTimerArea').classList.remove('hidden');
-                document.getElementById('activeTimerDisplay').innerText = "0:00";
-                clearInterval(activeInterval);
-            } else {
-                document.getElementById('inputLabel').innerText = "Carico (kg):";
-                document.getElementById('activeTimerArea').classList.add('hidden');
-            }
-    
-            if (savedHistory[ex.name]) {
-                inputField.value = savedHistory[ex.name];
-            } else {
-                inputField.value = '';
-            }
-            
-            showRestArea(false);
-        }
-    
-        function completeSet() {
-            const ex = selectedDay.exercises[currentExIndex];
-            const inputValue = document.getElementById('exInput').value;
-            const totalSets = ex.sets ? ex.sets : 1;
-            
-            if (inputValue !== '') {
-                savedHistory[ex.name] = inputValue;
-                localStorage.setItem('workoutHistory', JSON.stringify(savedHistory));
-            }
-            
-            sessionProgress[selectedDay.id][currentExIndex]++;
-            currentSet = sessionProgress[selectedDay.id][currentExIndex] + 1;
-            saveAppState('workout');
-            
-            if (currentSet <= totalSets) {
-                const restTime = ex.restSeconds ? ex.restSeconds : 60;
-                startRest(restTime);
-            } else {
-                setTimeout(() => {
-                    alert(`Hai completato tutti i set di ${ex.name}!`);
-                    goToOverview();
-                }, 100);
-            }
-        }
-    
-        function startActiveTimer() {
-            const inputVal = parseInt(document.getElementById('exInput').value);
-            if (!inputVal || inputVal <= 0) {
-                alert("Inserisci i secondi che vuoi eseguire nella casella in basso.");
-                return;
-            }
-    
-            const endTime = Date.now() + (inputVal * 1000);
-            clearInterval(activeInterval);
-            
-            activeInterval = setInterval(() => {
-                let timeLeft = Math.ceil((endTime - Date.now()) / 1000);
-                if (timeLeft <= 0) {
-                    clearInterval(activeInterval);
-                    document.getElementById('activeTimerDisplay').innerText = "FINE!";
-                    alert("Tempo di esecuzione scaduto!");
-                } else {
-                    const m = Math.floor(timeLeft / 60);
-                    const s = timeLeft % 60;
-                    document.getElementById('activeTimerDisplay').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-                }
-            }, 1000);
-        }
-    
-        function startRest(seconds) {
-            showRestArea(true);
-            const endTime = Date.now() + (seconds * 1000);
-            updateRestDisplay(seconds);
-            
-            clearInterval(restInterval);
-            restInterval = setInterval(() => {
-                let timeLeft = Math.ceil((endTime - Date.now()) / 1000);
-                if (timeLeft <= 0) {
-                    clearInterval(restInterval);
-                    showRestArea(false);
-                    updateWorkoutUI();
-                } else {
-                    updateRestDisplay(timeLeft);
-                }
-            }, 1000);
-        }
-    
-        function updateRestDisplay(timeLeft) {
-            const m = Math.floor(timeLeft / 60);
-            const s = timeLeft % 60;
-            document.getElementById('restTimerDisplay').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-        }
-    
-        function skipRest() {
-            clearInterval(restInterval);
-            showRestArea(false);
-            updateWorkoutUI();
-        }
-    
-        function showRestArea(isResting) {
-            if (isResting) {
-                document.getElementById('completeBtn').classList.add('hidden');
-                document.getElementById('activeTimerArea').classList.add('hidden');
-                document.getElementById('restArea').classList.remove('hidden');
-            } else {
-                document.getElementById('completeBtn').classList.remove('hidden');
-                document.getElementById('restArea').classList.add('hidden');
-            }
-        }
-    
-        function exportData() {
-            const dataStr = localStorage.getItem('workoutHistory');
-            if (!dataStr || dataStr === '{}') {
-                alert("Non hai ancora salvato nessun peso o tempo.");
-                return;
-            }
-            const blob = new Blob([dataStr], { type: "application/json" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Palestra_Storico_${new Date().toISOString().slice(0,10)}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-    </script>
-</body>
-</html>
+            document.getElementById('dayTitle
