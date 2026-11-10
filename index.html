@@ -13,6 +13,7 @@
             --text-muted: #aaaaaa;
             --techno-gold: #FDB913; 
             --success: #3aab94;
+            --danger: #ff5555;
         }
         body {
             margin: 0;
@@ -83,7 +84,7 @@
         .ex-list-card h3 { margin: 0 0 5px 0; font-size: 16px; }
         .ex-list-card p { margin: 0; color: var(--text-muted); font-size: 13px; }
 
-        /* Workout Screen */
+        /* Header & Navigazione */
         .header {
             display: flex;
             justify-content: space-between;
@@ -119,7 +120,7 @@
         .info-label { color: var(--text-muted); }
         .info-value { color: var(--accent); font-weight: bold; font-size: 18px; }
         
-        /* Input Pesi/Secondi */
+        /* Input Pesi/Secondi/Misure */
         .custom-input {
             background: transparent;
             border: 1px solid var(--text-muted);
@@ -130,6 +131,7 @@
             width: 80px;
             padding: 8px;
             border-radius: 8px;
+            flex-shrink: 0;
         }
 
         /* Azioni & Timer */
@@ -159,9 +161,9 @@
             font-size: 14px;
         }
         
-        .btn-export {
+        .btn-export, .btn-measures {
             display: block;
-            margin: 40px auto;
+            margin: 15px auto;
             background-color: transparent;
             border: 2px solid var(--accent);
             color: var(--accent);
@@ -171,6 +173,12 @@
             cursor: pointer;
             width: 100%;
             max-width: 300px;
+            font-size: 15px;
+        }
+        .btn-measures {
+            border-color: var(--techno-gold);
+            color: var(--techno-gold);
+            margin-top: 30px;
         }
 
         .btn-video {
@@ -195,6 +203,86 @@
             margin: 15px 0;
             padding-top: 15px;
         }
+
+        /* Stili Sezione Misure Corporee */
+        .rules-banner {
+            background-color: rgba(253, 185, 19, 0.1);
+            border-left: 4px solid var(--techno-gold);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .rules-banner strong { color: var(--techno-gold); }
+
+        .measure-item {
+            border-bottom: 1px solid #333;
+            padding: 14px 0;
+        }
+        .measure-item:last-child { border-bottom: none; }
+        .measure-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        .measure-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+        .measure-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        .history-card {
+            background-color: var(--card-bg);
+            border-left: 4px solid var(--techno-gold);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+        .history-date {
+            font-weight: bold;
+            color: var(--techno-gold);
+            font-size: 15px;
+        }
+        .delete-btn {
+            background: transparent;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 13px;
+            padding: 4px 8px;
+        }
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            font-size: 13px;
+        }
+        .history-val-item {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.03);
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+        .diff-pos { color: var(--accent); font-size: 11px; margin-left: 4px; }
+        .diff-neg { color: var(--techno-gold); font-size: 11px; margin-left: 4px; }
     </style>
 </head>
 <body>
@@ -210,6 +298,8 @@
         </div>
 
         <div id="daysList"></div>
+
+        <button class="btn-measures" onclick="openMeasurements()">📏 Misure Corporee</button>
         <button class="btn-export" onclick="exportData()">⬇ Esporta Dati Storico</button>
     </div>
 
@@ -259,7 +349,7 @@
             
             <div class="info-row">
                 <span class="info-label" id="inputLabel">Carico (kg):</span>
-                <input type="number" id="exInput" class="custom-input" placeholder="0">
+                <input type="number" id="exInput" class="custom-input" placeholder="0" step="0.5">
             </div>
         </div>
 
@@ -274,24 +364,113 @@
         </div>
     </div>
 
+    <!-- Schermata Misure Corporee -->
+    <div id="measurementsScreen" class="hidden">
+        <div class="header">
+            <span class="back-btn" onclick="goHome()">← Home</span>
+            <span class="progress">Tracciamento Fisico</span>
+        </div>
+
+        <div class="rules-banner">
+            <strong>Regole d'oro:</strong> Misurati al mattino a digiuno. Mantieni il metro parallelo al suolo, aderente alla pelle ma senza comprimere i tessuti.
+        </div>
+
+        <div class="workout-card">
+            <h2>Nuova Misurazione</h2>
+            <div id="measurementsForm"></div>
+
+            <div class="action-area">
+                <button class="btn-complete" onclick="saveMeasurements()">SALVA MISURE</button>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; margin-top: 35px; font-size: 18px;">Storico Misurazioni</h2>
+        <div id="measurementsHistoryList"></div>
+    </div>
+
     <script>
         // ==========================================
         // 1. INSERISCI QUI I TUOI FILE JSON
         // ==========================================
         const workoutFilesList = ['workout.json', 'workout2.json'];
         
+        // Configurazione campi Misure Corporee e relative spiegazioni
+        const bodyMeasurementFields = [
+            {
+                id: 'peso',
+                name: 'Peso Corporeo',
+                unit: 'kg',
+                desc: 'Al mattino a digiuno, dopo essere andato in bagno e senza vestiti.'
+            },
+            {
+                id: 'spalle',
+                name: 'Spalle',
+                unit: 'cm',
+                desc: 'Nel punto di massima ampiezza dei deltoidi, in piedi con braccia rilassate lungo i fianchi.'
+            },
+            {
+                id: 'petto',
+                name: 'Petto',
+                unit: 'cm',
+                desc: 'All\'altezza dei capezzoli, metro orizzontale sotto le ascelle, dorsali rilassati a polmoni neutri.'
+            },
+            {
+                id: 'braccio_ril',
+                name: 'Braccio (Rilassato)',
+                unit: 'cm',
+                desc: 'A metà tra spalla e gomito, con il braccio disteso e rilassato lungo il fianco.'
+            },
+            {
+                id: 'braccio_cont',
+                name: 'Braccio (Contratto)',
+                unit: 'cm',
+                desc: 'Sul picco massimo del bicipite, con braccio sollevato e flesso a 90° contraendo al massimo.'
+            },
+            {
+                id: 'avambraccio',
+                name: 'Avambraccio',
+                unit: 'cm',
+                desc: 'Nel punto di massima larghezza (circa 3–5 cm sotto il gomito), a pugno chiuso ma rilassato.'
+            },
+            {
+                id: 'vita',
+                name: 'Vita (Addome)',
+                unit: 'cm',
+                desc: 'All\'altezza dell\'ombelico, postura eretta e addome rilassato a fine espirazione naturale.'
+            },
+            {
+                id: 'fianchi',
+                name: 'Fianchi',
+                unit: 'cm',
+                desc: 'Nel punto di massima sporgenza dei glutei, tenendo i piedi uniti.'
+            },
+            {
+                id: 'coscia',
+                name: 'Coscia',
+                unit: 'cm',
+                desc: 'A metà tra piega inguinale e rotula (o nel punto più largo sotto l\'inguine), gamba rilassata.'
+            },
+            {
+                id: 'polpaccio',
+                name: 'Polpaccio',
+                unit: 'cm',
+                desc: 'Nel punto di massima circonferenza, con il piede ben appoggiato a terra senza contrarre.'
+            }
+        ];
+
         let workoutData = null;
         let selectedDay = null;
         let currentExIndex = 0;
         let currentSet = 1;
-        let currentFile = workoutFilesList[0]; // Di default prende il primo
+        let currentFile = workoutFilesList[0];
         
         let sessionProgress = JSON.parse(localStorage.getItem('sessionProgress')) || {}; 
         let savedHistory = JSON.parse(localStorage.getItem('workoutHistory')) || {};
+        let bodyMeasurements = JSON.parse(localStorage.getItem('bodyMeasurements')) || [];
         let restInterval = null;
         let activeInterval = null;
 
-        // Inizializza l'app: Legge tutti i file e crea il menu a tendina con i nomi reali
+        // Inizializza l'app
         async function initializeApp() {
             const select = document.getElementById('workoutSelect');
             select.innerHTML = ''; 
@@ -303,7 +482,6 @@
                         const data = await response.json();
                         const opt = document.createElement('option');
                         opt.value = file;
-                        // Usa il programName letto dal JSON, se assente usa il nome del file
                         opt.textContent = data.programName || file; 
                         select.appendChild(opt);
                     }
@@ -312,7 +490,6 @@
                 }
             }
             
-            // Finita la costruzione del menu, ripristina lo stato precedente
             restoreAppState();
         }
 
@@ -345,11 +522,13 @@
             }
     
             loadWorkoutFile(currentFile, () => {
-                if (state.screen === 'overview' && state.dayId) {
-                    const day = workoutData.days.find(d => d.id === state.dayId);
+                if (state.screen === 'measurements') {
+                    openMeasurements(false);
+                } else if (state.screen === 'overview' && state.dayId) {
+                    const day = workoutData && workoutData.days ? workoutData.days.find(d => d.id === state.dayId) : null;
                     if (day) openDayOverview(day, false);
                 } else if (state.screen === 'workout' && state.dayId) {
-                    const day = workoutData.days.find(d => d.id === state.dayId);
+                    const day = workoutData && workoutData.days ? workoutData.days.find(d => d.id === state.dayId) : null;
                     if (day) {
                         selectedDay = day;
                         currentExIndex = state.exIndex || 0;
@@ -379,7 +558,8 @@
                     if (callback) callback();
                 })
                 .catch(error => {
-                    alert("Errore nel caricamento di " + filename);
+                    console.warn("Impossibile caricare il file scheda: " + filename);
+                    if (callback) callback();
                 });
         }
 
@@ -394,7 +574,6 @@
             });
         }
     
-        // Lancia l'inizializzazione appena si apre la pagina
         initializeApp();
     
         function renderHome() {
@@ -416,10 +595,142 @@
     
         function goHome() {
             document.getElementById('overviewScreen').classList.add('hidden');
+            document.getElementById('workoutScreen').classList.add('hidden');
+            document.getElementById('measurementsScreen').classList.add('hidden');
             document.getElementById('homeScreen').classList.remove('hidden');
             saveAppState('home');
         }
     
+        // ==========================================
+        // SEZIONE MISURE CORPOREE
+        // ==========================================
+        function openMeasurements(save = true) {
+            document.getElementById('homeScreen').classList.add('hidden');
+            document.getElementById('overviewScreen').classList.add('hidden');
+            document.getElementById('workoutScreen').classList.add('hidden');
+            document.getElementById('measurementsScreen').classList.remove('hidden');
+            
+            renderMeasurementsForm();
+            renderMeasurementsHistory();
+            if (save) saveAppState('measurements');
+        }
+
+        function renderMeasurementsForm() {
+            const container = document.getElementById('measurementsForm');
+            container.innerHTML = '';
+            
+            // Prende l'ultima misurazione salvata per mostrarla come valore predefinito/placeholder
+            const lastEntry = bodyMeasurements.length > 0 ? bodyMeasurements[0].values : {};
+
+            bodyMeasurementFields.forEach(field => {
+                const prevVal = lastEntry[field.id] !== undefined ? lastEntry[field.id] : '';
+                const item = document.createElement('div');
+                item.className = 'measure-item';
+                item.innerHTML = `
+                    <div class="measure-header">
+                        <div style="flex: 1;">
+                            <div class="measure-title">${field.name} (${field.unit})</div>
+                            <div class="measure-desc">${field.desc}</div>
+                        </div>
+                        <input type="number" step="0.1" id="meas_${field.id}" class="custom-input" placeholder="${prevVal || '0'}" value="${prevVal}">
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function saveMeasurements() {
+            const values = {};
+            let hasAtLeastOne = false;
+
+            bodyMeasurementFields.forEach(field => {
+                const input = document.getElementById(`meas_${field.id}`);
+                const val = parseFloat(input.value);
+                if (!isNaN(val) && val > 0) {
+                    values[field.id] = val;
+                    hasAtLeastOne = true;
+                }
+            });
+
+            if (!hasAtLeastOne) {
+                alert("Inserisci almeno una misura valida prima di salvare.");
+                return;
+            }
+
+            const newRecord = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+                timestamp: Date.now(),
+                values: values
+            };
+
+            // Aggiunge in cima all'array (dal più recente al più vecchio)
+            bodyMeasurements.unshift(newRecord);
+            localStorage.setItem('bodyMeasurements', JSON.stringify(bodyMeasurements));
+            
+            renderMeasurementsHistory();
+            alert("Misure salvate con successo!");
+        }
+
+        function deleteMeasurement(id) {
+            if (!confirm("Vuoi davvero eliminare questa misurazione dallo storico?")) return;
+            bodyMeasurements = bodyMeasurements.filter(entry => entry.id !== id);
+            localStorage.setItem('bodyMeasurements', JSON.stringify(bodyMeasurements));
+            renderMeasurementsHistory();
+        }
+
+        function renderMeasurementsHistory() {
+            const list = document.getElementById('measurementsHistoryList');
+            list.innerHTML = '';
+
+            if (bodyMeasurements.length === 0) {
+                list.innerHTML = `<p style="text-align: center; color: var(--text-muted); font-size: 14px;">Nessuna misurazione registrata.</p>`;
+                return;
+            }
+
+            bodyMeasurements.forEach((entry, index) => {
+                const prevEntry = bodyMeasurements[index + 1] ? bodyMeasurements[index + 1].values : null;
+                
+                let gridHtml = '';
+                bodyMeasurementFields.forEach(field => {
+                    const currentVal = entry.values[field.id];
+                    if (currentVal !== undefined) {
+                        let diffHtml = '';
+                        if (prevEntry && prevEntry[field.id] !== undefined) {
+                            const diff = (currentVal - prevEntry[field.id]).toFixed(1);
+                            if (diff > 0) {
+                                diffHtml = `<span class="diff-pos">(+${diff})</span>`;
+                            } else if (diff < 0) {
+                                diffHtml = `<span class="diff-neg">(${diff})</span>`;
+                            }
+                        }
+                        gridHtml += `
+                            <div class="history-val-item">
+                                <span style="color: var(--text-muted);">${field.name}:</span>
+                                <span><strong>${currentVal} ${field.unit}</strong>${diffHtml}</span>
+                            </div>
+                        `;
+                    }
+                });
+
+                const card = document.createElement('div');
+                card.className = 'history-card';
+                card.innerHTML = `
+                    <div class="history-header">
+                        <span class="history-date">📅 ${entry.date}</span>
+                        <button class="delete-btn" onclick="deleteMeasurement(${entry.id})">✕ Elimina</button>
+                    </div>
+                    <div class="history-grid">
+                        ${gridHtml}
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        // ==========================================
+        // SEZIONE ALLENAMENTO
+        // ==========================================
         function openDayOverview(day, save = true) {
             selectedDay = day;
             document.getElementById('dayTitle').innerText = day.name.split(' ')[0] + " " + (day.name.split(' ')[1] || '');
@@ -642,12 +953,20 @@
         }
     
         function exportData() {
-            const dataStr = localStorage.getItem('workoutHistory');
-            if (!dataStr || dataStr === '{}') {
-                alert("Non hai ancora salvato nessun peso o tempo.");
+            const workoutHist = JSON.parse(localStorage.getItem('workoutHistory')) || {};
+            const bodyMeas = JSON.parse(localStorage.getItem('bodyMeasurements')) || [];
+
+            if (Object.keys(workoutHist).length === 0 && bodyMeas.length === 0) {
+                alert("Non hai ancora salvato nessun dato o misura.");
                 return;
             }
-            const blob = new Blob([dataStr], { type: "application/json" });
+
+            const exportPayload = {
+                workoutHistory: workoutHist,
+                bodyMeasurements: bodyMeas
+            };
+
+            const blob = new Blob([JSON.stringify(exportPayload, null, 2)], { type: "application/json" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
